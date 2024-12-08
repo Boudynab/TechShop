@@ -1,0 +1,88 @@
+/* Global Styles (you can add this to your global.css or separate file) */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f7fa;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Register Form Container */
+.register {
+  max-width: 450px;
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.register:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Header */
+.register h2 {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+/* Form Styling */
+.register form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Input Fields */
+.register input {
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+}
+
+.register input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Submit Button */
+.register button {
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.register button:hover {
+  background-color: #0056b3;
+}
+
+/* Sign In Link */
+.register .sign-in-link {
+  font-size: 14px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.register .sign-in-link a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.register .sign-in-link a:hover {
+  text-decoration: underline;
+}

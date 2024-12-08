@@ -1,0 +1,48 @@
+/* Category Menu Styles */
+.category-menu {
+  position: fixed; /* Fixes the category menu on the left */
+  top: 50px; /* Adjust this to avoid overlapping with the navbar */
+  left: 0; /* Aligns it to the left edge of the screen */
+  background-color: #28334A;
+  color: #fff;
+  width: 250px;
+  padding: 20px;
+  box-sizing: border-box; /* Ensure padding doesn't affect width/height */
+  height: 100%; /* Full height */
+  z-index: 999; /* Ensure it's above other content */
+  display: block; /* Ensure normal block flow */
+}
+
+.category-menu h2 {
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+.category-menu ul {
+  margin: 0; /* Remove margin to ensure alignment to the top */
+  padding: 0; /* Remove padding */
+  list-style: none; /* Remove bullet points */
+}
+
+.category-menu ul li {
+  margin: 10px 0;
+}
+
+.category-menu ul li a {
+  color: #fff;
+  font-size: 18px;
+  padding: 10px;
+  display: block;
+  text-decoration: none; /* Remove underline */
+}
+
+.category-menu ul li a:hover {
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 5px;
+}
+
+/* Adjust the content area to prevent overlap with the category menu */
+body {
+  padding-left: 250px; /* Space for the category menu */
+}
