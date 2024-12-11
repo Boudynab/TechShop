@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 // Styles for category page
-
+ 
 const CategoryPage = () => {
   const { categoryName } = useParams();
 

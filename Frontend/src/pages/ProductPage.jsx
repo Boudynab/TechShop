@@ -8,7 +8,7 @@ const ProductPage = () => {
 
   // Placeholder product data
   const product = {
-    name: 'MSI Thin 15 B12UCX Laptop - Intel Core i5',
+    name: 'Dell G15 Laptop - Intel Core i5',
     specifications: [
       'Specification 1: Detail 1',
       'Specification 2: Detail 2',

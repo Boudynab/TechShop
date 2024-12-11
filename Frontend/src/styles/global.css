@@ -92,7 +92,7 @@ button:focus {
 .search-bar input {
   border: none;
   background: none;
-  color: #f0f0f0;
+  color: #000000;
   flex: 1;
   padding: 8px 12px;
   font-size: 16px;

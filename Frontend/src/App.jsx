@@ -7,6 +7,9 @@ import ProductPage from './pages/ProductPage';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import CategoryMenu from './components/CategoryMenu';
+import DesktopsPage from './pages/DesktopsPage';
+import MobilesPage from './pages/MobilesPage';
+import LaptopsPage from './pages/LaptopsPage';
 const App = () => {
   return (
     <Router>
@@ -15,7 +18,11 @@ const App = () => {
       <CategoryMenu /> 
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/category/:categoryName" element={<CategoryPage />} />
+
+          <Route path="/category/desktops" element={<DesktopsPage />} />
+          <Route path="/category/mobiles" element={<MobilesPage />} />
+          <Route path="/category/laptops" element={<LaptopsPage />} />
+
           <Route path="/product/:productId" element={<ProductPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -26,3 +33,4 @@ const App = () => {
 };
 
 export default App;
+ 
