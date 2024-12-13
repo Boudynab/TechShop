@@ -16,6 +16,12 @@ const MobilesPage = () => {
       { id: 2, name: 'Samsung s22', price: '$200', image: samsung },
       { id: 1, name: 'Samsung s23', price: '$100', image: samsung },
       { id: 2, name: 'Samsung s24', price: '$200', image: samsung },
+      { id: 1, name: 'Iphone 12', price: '$100', image: iphone},
+      { id: 2, name: 'Iphone 15', price: '$200', image: iphone },
+      { id: 1, name: 'Iphone 16', price: '$100', image:   iphone },
+      { id: 2, name: 'Samsung s22', price: '$200', image: samsung },
+      { id: 1, name: 'Samsung s23', price: '$100', image: samsung },
+      { id: 2, name: 'Samsung s24', price: '$200', image: samsung },
   
   
   

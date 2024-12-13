@@ -13,12 +13,13 @@ import { useNavigate } from "react-router-dom";
 const Home = () => {
   const navigate = useNavigate();
   const categories = [
+    { id: 5, name: "Laptops", image: lap, path: "/category/laptops" },
+    { id: 6, name: "Mobile Phones", image: phone, path: "/category/mobiles" },
     { id: 1, name: "Processors", image: pro, path: "/category/processors" },
     { id: 2, name: "Storage drives", image: sto, path: "/category/storage-drives" },
     { id: 3, name: "Motherboards", image: moth, path: "/category/motherboards" },
     { id: 4, name: "RAMs", image: ram, path: "/category/rams" },
-    { id: 5, name: "Laptops", image: lap, path: "/category/laptops" },
-    { id: 6, name: "Mobile Phones", image: phone, path: "/category/mobiles" },
+    
   ];
 
   return (

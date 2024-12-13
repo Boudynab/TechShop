@@ -2,12 +2,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    position: absolute;
+    left: 250px;
+    top:70px;
+    height: 100%;
+    width: 84%;
     background-color: #252a41;
     color: #f5f5f5;
   }
   
   .product-container {
+    position: absolute;
+    left: 50px;
+    top: 50px;
     display: flex;
     flex-direction: row;
     background-color: #252a41;

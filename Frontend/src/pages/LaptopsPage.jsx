@@ -13,7 +13,12 @@ const LaptopsPage = () => {
       { id: 2, name: 'Dell g15', price: '$200', image: OIP },
       { id: 1, name: 'Dell g15', price: '$100', image: OIP },
       { id: 2, name: 'Dell g15', price: '$200', image: OIP },
-  
+      { id: 1, name: 'Dell g15', price: '$100', image: OIP },
+      { id: 2, name: 'Dell g15', price: '$200', image: OIP },
+      { id: 1, name: 'Dell g15', price: '$100', image: OIP },
+      { id: 2, name: 'Dell g15', price: '$200', image: OIP },
+      { id: 1, name: 'Dell g15', price: '$100', image: OIP },
+      { id: 2, name: 'Dell g15', price: '$200', image: OIP },
   
   
     ];

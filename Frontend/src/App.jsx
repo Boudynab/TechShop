@@ -10,27 +10,32 @@ import CategoryMenu from './components/CategoryMenu';
 import DesktopsPage from './pages/DesktopsPage';
 import MobilesPage from './pages/MobilesPage';
 import LaptopsPage from './pages/LaptopsPage';
+import Chatbot from './components/ChatBot';
 const App = () => {
   return (
-    <Router>
-      <Navbar />
-      <div className="main-content">
-      <CategoryMenu /> 
-        <Routes>
-          <Route path="/" element={<Home />} />
+    <div>
+      
+      <Router>
+        <Navbar />
+        <div className="main-content">
+          <CategoryMenu />
+          <Routes>
+            <Route path="/" element={<Home />} />
 
-          <Route path="/category/desktops" element={<DesktopsPage />} />
-          <Route path="/category/mobiles" element={<MobilesPage />} />
-          <Route path="/category/laptops" element={<LaptopsPage />} />
+            <Route path="/category/desktops" element={<DesktopsPage />} />
+            <Route path="/category/mobiles" element={<MobilesPage />} />
+            <Route path="/category/laptops" element={<LaptopsPage />} />
 
-          <Route path="/product/:productId" element={<ProductPage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-        </Routes>
-      </div>
-    </Router>
+            <Route path="/product/:productId" element={<ProductPage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+          </Routes>
+        </div>
+      </Router>
+      <Chatbot />
+    </div>
+
   );
 };
 
 export default App;
- 
