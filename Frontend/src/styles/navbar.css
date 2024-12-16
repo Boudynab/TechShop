@@ -72,7 +72,8 @@ body {
 
 .logo-image {
   height: auto; /* Adjust the height to fit your design */
-  width: 20vw;  /* Maintain aspect ratio */
+  width: 10vw;  /* Maintain aspect ratio */
   display: block;
   margin: 10px;
 }
+ 

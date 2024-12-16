@@ -7,19 +7,18 @@ const LaptopsPage = () => {
 
     // Placeholder data
     const products = [
-      { id: 1, name: 'Dell g15', price: '$100', image: OIP },
-      { id: 2, name: 'Dell g15', price: '$200', image: OIP },
-      { id: 1, name: 'Dell g15', price: '$100', image: OIP },
-      { id: 2, name: 'Dell g15', price: '$200', image: OIP },
-      { id: 1, name: 'Dell g15', price: '$100', image: OIP },
-      { id: 2, name: 'Dell g15', price: '$200', image: OIP },
-      { id: 1, name: 'Dell g15', price: '$100', image: OIP },
-      { id: 2, name: 'Dell g15', price: '$200', image: OIP },
-      { id: 1, name: 'Dell g15', price: '$100', image: OIP },
-      { id: 2, name: 'Dell g15', price: '$200', image: OIP },
-      { id: 1, name: 'Dell g15', price: '$100', image: OIP },
-      { id: 2, name: 'Dell g15', price: '$200', image: OIP },
-  
+      { id: 1, name: 'Dell g15', price: '$100', image: OIP , specifications: ["Processor: Intel Core i5-11300H", "RAM: 8GB DDR4", "Storage: 512GB SSD", "Display: 15.6 inches Full HD"]  },
+      { id: 2, name: 'Dell g15', price: '$200', image: OIP , specifications: ["Processor: Intel Core i5-11300H", "RAM: 8GB DDR4", "Storage: 512GB SSD", "Display: 15.6 inches Full HD"]  },
+      { id: 3, name: 'Dell g15', price: '$100', image: OIP , specifications: ["Processor: Intel Core i5-11300H", "RAM: 8GB DDR4", "Storage: 512GB SSD", "Display: 15.6 inches Full HD"]  },
+      { id: 4, name: 'Dell g15', price: '$200', image: OIP , specifications: ["Processor: Intel Core i5-11300H", "RAM: 8GB DDR4", "Storage: 512GB SSD", "Display: 15.6 inches Full HD"]  },
+      { id: 5, name: 'Dell g15', price: '$100', image: OIP , specifications: ["Processor: Intel Core i5-11300H", "RAM: 8GB DDR4", "Storage: 512GB SSD", "Display: 15.6 inches Full HD"]  },
+      { id: 6, name: 'Dell g15', price: '$200', image: OIP , specifications: ["Processor: Intel Core i5-11300H", "RAM: 8GB DDR4", "Storage: 512GB SSD", "Display: 15.6 inches Full HD"]  },
+      { id: 7, name: 'Dell g15', price: '$100', image: OIP , specifications: ["Processor: Intel Core i5-11300H", "RAM: 8GB DDR4", "Storage: 512GB SSD", "Display: 15.6 inches Full HD"]  },
+      { id: 8, name: 'Dell g15', price: '$200', image: OIP , specifications: ["Processor: Intel Core i5-11300H", "RAM: 8GB DDR4", "Storage: 512GB SSD", "Display: 15.6 inches Full HD"]  },
+      { id: 9, name: 'Dell g15', price: '$100', image: OIP , specifications: ["Processor: Intel Core i5-11300H", "RAM: 8GB DDR4", "Storage: 512GB SSD", "Display: 15.6 inches Full HD"]  },
+      { id: 10, name: 'Dell g15', price: '$200', image: OIP , specifications: ["Processor: Intel Core i5-11300H", "RAM: 8GB DDR4", "Storage: 512GB SSD", "Display: 15.6 inches Full HD"]  },
+      { id: 11, name: 'Dell g15', price: '$100', image: OIP , specifications: ["Processor: Intel Core i5-11300H", "RAM: 8GB DDR4", "Storage: 512GB SSD", "Display: 15.6 inches Full HD"]  },
+      { id: 12, name: 'Dell g15', price: '$200', image: OIP , specifications: ["Processor: Intel Core i5-11300H", "RAM: 8GB DDR4", "Storage: 512GB SSD", "Display: 15.6 inches Full HD"]  },
   
     ];
   
