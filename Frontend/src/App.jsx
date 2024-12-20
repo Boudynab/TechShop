@@ -11,6 +11,10 @@ import DesktopsPage from './pages/DesktopsPage';
 import MobilesPage from './pages/MobilesPage';
 import LaptopsPage from './pages/LaptopsPage';
 import Chatbot from './components/ChatBot';
+import RamPage from './pages/RamPage';
+import ProcessorPage from './pages/ProcessorPage';
+import StoragePage from './pages/StoragePage';
+import MotherboardPage from './pages/MotherboardPage';
 const App = () => {
   return (
     <div>
@@ -25,6 +29,10 @@ const App = () => {
             <Route path="/category/desktops" element={<DesktopsPage />} />
             <Route path="/category/mobiles" element={<MobilesPage />} />
             <Route path="/category/laptops" element={<LaptopsPage />} />
+            <Route path="/category/rams" element={<RamPage />} />
+            <Route path="/category/processors" element={<ProcessorPage />} />
+            <Route path="/category/storage-drives" element={<StoragePage />} />
+            <Route path="/category/motherboards" element={<MotherboardPage />} />
 
             <Route path="/product/:productId" element={<ProductPage />} />
             <Route path="/login" element={<Login />} />
