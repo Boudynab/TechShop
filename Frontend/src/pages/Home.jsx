@@ -1,6 +1,5 @@
 import React from "react";
 import CategoryMenu from "../components/CategoryMenu";
-import ProductCard from "../components/ProductCard";
 import '../styles/global.css';
 import '../styles/home.css';
 import pro from '../assets/images/pro.jpg';
