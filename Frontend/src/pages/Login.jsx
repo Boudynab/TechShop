@@ -31,7 +31,7 @@ const Login = () => {
         setError(0);
         console.log(response.data);
         console.log("Logged In Successfully");
-        window.location.href="/home";
+        window.location.href="/";
       }
     }
   };
