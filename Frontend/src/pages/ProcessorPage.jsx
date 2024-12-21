@@ -1,13 +1,35 @@
-import React from 'react';
 import ProductCard from '../components/ProductCard';
-import processorImage from '../assets/images/pro.jpg';
+import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'; 
+import axios from 'axios'; 
 
 const ProcessorPage = () => {
-  const products = [
-    { id: 1, name: 'Intel Core i7', price: '$300', image: processorImage, specifications: ["Cores: 8", "Threads: 16", "Base Clock: 3.8 GHz", "Boost Clock: 5.0 GHz"] },
-    { id: 2, name: 'AMD Ryzen 5', price: '$200', image: processorImage, specifications: ["Cores: 6", "Threads: 12", "Base Clock: 3.6 GHz", "Boost Clock: 4.4 GHz"] },
-  ];
+  const { categoryName } = useParams(); 
+  const [products, setProducts] = useState([]); 
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null); 
 
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8080/TechShop/getAllProcessors`);
+        console.log(response.data);  
+        setProducts(response.data);  
+      } catch (err) {
+        setError('Failed to fetch products');
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProducts();
+    console.log(products);
+  }, []);  
+  if (loading) {
+    return <div>Loading...</div>; 
+  }
+  if (error) {
+    return <div>{error}</div>; 
+  }
   return (
     <div className="category-page">
       <h2>Processors</h2>

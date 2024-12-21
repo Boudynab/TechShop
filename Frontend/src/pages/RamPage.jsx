@@ -1,63 +1,34 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
-import RAMImage from '../assets/images/ram.jpg'; // Replace with your RAM image path
-
+import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'; 
+import axios from 'axios'; 
 const RamPage = () => {
-  const { categoryName } = useParams();
+  const { categoryName } = useParams(); 
+  const [products, setProducts] = useState([]); 
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null); 
 
-  // Placeholder data for RAM products
-  const products = [
-    {
-      id: 1,
-      name: 'Corsair Vengeance 16GB',
-      price: '$80',
-      image: RAMImage,
-      specifications: [
-        'Type: DDR4',
-        'Speed: 3200 MHz',
-        'Capacity: 16GB',
-        'Voltage: 1.35V',
-      ],
-    },
-    {
-      id: 2,
-      name: 'G.Skill Ripjaws 8GB',
-      price: '$40',
-      image: RAMImage,
-      specifications: [
-        'Type: DDR4',
-        'Speed: 2400 MHz',
-        'Capacity: 8GB',
-        'Voltage: 1.2V',
-      ],
-    },
-    {
-      id: 3,
-      name: 'Kingston Fury Beast 32GB',
-      price: '$150',
-      image: RAMImage,
-      specifications: [
-        'Type: DDR5',
-        'Speed: 4800 MHz',
-        'Capacity: 32GB',
-        'Voltage: 1.1V',
-      ],
-    },
-    {
-      id: 4,
-      name: 'TeamGroup T-Force 16GB',
-      price: '$70',
-      image: RAMImage,
-      specifications: [
-        'Type: DDR4',
-        'Speed: 3000 MHz',
-        'Capacity: 16GB',
-        'Voltage: 1.35V',
-      ],
-    },
-  ];
-
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8080/TechShop/getAllProcessors`);
+        console.log(response.data);  
+        setProducts(response.data);  
+      } catch (err) {
+        setError('Failed to fetch products');
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProducts();
+    console.log(products);
+  }, []);  
+  if (loading) {
+    return <div>Loading...</div>; 
+  }
+  if (error) {
+    return <div>{error}</div>; 
+  }
   return (
     <div className="category-page">
       <h2>{categoryName || 'RAM'} Products</h2>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, useLocation } from 'react-router-dom';
-import '../styles/ProductPage.css'; // For styling
+import '../styles/ProductPage.css';
 
 const ProductPage = () => {
   const { productId } = useParams();
@@ -10,7 +10,6 @@ const ProductPage = () => {
   if (!product) {
     return <div>Product not found!</div>;
   }
-
   return (
     <div className="product-page">
       <div className="product-container">

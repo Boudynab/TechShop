@@ -1,40 +1,45 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
-import pc from '../assets/images/pc.jfif';
-const DesktopsPage = () => {
-    const { categoryName } = useParams();
+import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'; 
+import axios from 'axios'; 
 
-    // Placeholder data
-    const products = [
-      { id: 1, name: 'Lenovo Legion Tower 5i', price: '$100', image: pc },
-      { id: 2, name: 'Lenovo Legion Tower 5i', price: '$200', image: pc },
-      { id: 1, name: 'Lenovo Legion Tower 5i', price: '$100', image: pc },
-      { id: 2, name: 'Lenovo Legion Tower 5i', price: '$200', image: pc },
-      { id: 1, name: 'Lenovo Legion Tower 5i', price: '$100', image: pc },
-      { id: 2, name: 'Lenovo Legion Tower 5i', price: '$200', image: pc },
-      { id: 1, name: 'Lenovo Legion Tower 5i', price: '$100', image: pc },
-      { id: 2, name: 'Lenovo Legion Tower 5i', price: '$200', image: pc },
-      { id: 1, name: 'Lenovo Legion Tower 5i', price: '$100', image: pc },
-      { id: 2, name: 'Lenovo Legion Tower 5i', price: '$200', image: pc },
-      { id: 1, name: 'Lenovo Legion Tower 5i', price: '$100', image: pc },
-      { id: 2, name: 'Lenovo Legion Tower 5i', price: '$200', image: pc },
-  
-  
-  
-  
-    ];
-  
-    return (
-      <div className="category-page">
-        <h2>{categoryName} Products</h2>
-        <div className="product-list">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
+const DesktopsPage = () => {
+  const { categoryName } = useParams(); 
+  const [products, setProducts] = useState([]); 
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null); 
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8080/TechShop/getAllDesktops`);
+        console.log(response.data);  
+        setProducts(response.data);  
+      } catch (err) {
+        setError('Failed to fetch products');
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProducts();
+    console.log(products);
+  }, []);  
+  if (loading) {
+    return <div>Loading...</div>; 
+  }
+  if (error) {
+    return <div>{error}</div>; 
+  }
+  return (
+    <div className="category-page">
+      <h2>{categoryName} Products</h2>
+      <div className="product-list">
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
       </div>
-    );
-  };
+    </div>
+  );
+};
   
 export default DesktopsPage;
