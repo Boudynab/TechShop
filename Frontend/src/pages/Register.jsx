@@ -31,7 +31,7 @@ const Register = () => {
     else{
       setError(0);
       alert("Registration Successful!");
-      window.location.href="/login"; // Redirect to login page after successful registration
+      window.location.href="/login"; 
     }
   }
 };

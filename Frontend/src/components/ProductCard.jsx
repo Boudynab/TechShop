@@ -9,7 +9,7 @@ import i2 from '../assets/images/i2.jpeg';
 const ProductCard = ({ product }) => {
   return (
     <div className="product-card">
-      <img src={product.image} alt={product.name} />
+      <img src={`data:image/jpeg;base64,${product.photo}`} alt="Decoded Photo" />
       <h3>{product.name}</h3>
       <p>${product.price}</p>
       <Link 
