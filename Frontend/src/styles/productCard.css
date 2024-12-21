@@ -1,5 +1,26 @@
+.category-page{
+  position: absolute;
+  left: 250px;
+  top: 70px;
+  width: 100%;
+}
+
+.category-page h2{
+  color: #222831;
+  margin-left: 20px;
+  font-size: 30px;
+}
+
+.product-list{
+  padding-left:20px ;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  width: 80%;
+}
+
 .product-card {
-  background-color: #fff;
+  background-color: #222831;
   border: 1px solid #ddd;
   border-radius: 10px;
   padding: 15px;
@@ -24,13 +45,13 @@
 
 .product-card h3 {
   font-size: 18px;
-  color: #333;
+  color: #EEEE;
   margin-bottom: 10px;
 }
 
 .product-card p {
   font-size: 16px;
-  color: #555;
+  color: #EEEE;
   margin-bottom: 15px;
 }
 
@@ -46,4 +67,9 @@
 
 .product-card button:hover {
   background-color: #0056b3;
+}
+
+.view-product{
+  color: #00ADB5;
+  font-weight: 700;
 }

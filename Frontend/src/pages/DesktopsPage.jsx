@@ -1,18 +1,25 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
-import OIP from '../assets/images/OIP.jpeg';
+import pc from '../assets/images/pc.jfif';
 const DesktopsPage = () => {
     const { categoryName } = useParams();
 
     // Placeholder data
     const products = [
-      { id: 1, name: 'Lenovo Legion Tower 5i', price: '$100', image: OIP },
-      { id: 2, name: 'Lenovo Legion Tower 5i', price: '$200', image: OIP },
-      { id: 1, name: 'Lenovo Legion Tower 5i', price: '$100', image: OIP },
-      { id: 2, name: 'Lenovo Legion Tower 5i', price: '$200', image: OIP },
-      { id: 1, name: 'Lenovo Legion Tower 5i', price: '$100', image: OIP },
-      { id: 2, name: 'Lenovo Legion Tower 5i', price: '$200', image: OIP },
+      { id: 1, name: 'Lenovo Legion Tower 5i', price: '$100', image: pc },
+      { id: 2, name: 'Lenovo Legion Tower 5i', price: '$200', image: pc },
+      { id: 1, name: 'Lenovo Legion Tower 5i', price: '$100', image: pc },
+      { id: 2, name: 'Lenovo Legion Tower 5i', price: '$200', image: pc },
+      { id: 1, name: 'Lenovo Legion Tower 5i', price: '$100', image: pc },
+      { id: 2, name: 'Lenovo Legion Tower 5i', price: '$200', image: pc },
+      { id: 1, name: 'Lenovo Legion Tower 5i', price: '$100', image: pc },
+      { id: 2, name: 'Lenovo Legion Tower 5i', price: '$200', image: pc },
+      { id: 1, name: 'Lenovo Legion Tower 5i', price: '$100', image: pc },
+      { id: 2, name: 'Lenovo Legion Tower 5i', price: '$200', image: pc },
+      { id: 1, name: 'Lenovo Legion Tower 5i', price: '$100', image: pc },
+      { id: 2, name: 'Lenovo Legion Tower 5i', price: '$200', image: pc },
+  
   
   
   

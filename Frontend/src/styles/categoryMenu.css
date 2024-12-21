@@ -1,7 +1,7 @@
 /* Category Menu Styles */
 .category-menu {
   position: fixed; /* Fixes the category menu on the left */
-  top: 50px; /* Adjust this to avoid overlapping with the navbar */
+  top: 20px; /* Adjust this to avoid overlapping with the navbar */
   left: 0; /* Aligns it to the left edge of the screen */
   background-color: #28334A;
   color: #fff;
@@ -15,7 +15,7 @@
 
 .category-menu h2 {
   margin-bottom: 10px;
-  font-size: 24px;
+  font-size: 30px;
 }
 
 .category-menu ul {

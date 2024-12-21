@@ -4,6 +4,7 @@
   top: 0;
   left: 0;
   width: 100%;
+  height: 70px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -70,7 +71,9 @@ body {
 }
 
 .logo-image {
-  height: 40px; /* Adjust the height to fit your design */
-  width: auto;  /* Maintain aspect ratio */
+  height: auto; /* Adjust the height to fit your design */
+  width: 10vw;  /* Maintain aspect ratio */
   display: block;
+  margin: 10px;
 }
+ 
