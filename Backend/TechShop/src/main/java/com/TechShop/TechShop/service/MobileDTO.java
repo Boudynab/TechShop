@@ -2,18 +2,21 @@ package com.TechShop.TechShop.service;
 
 import java.util.List;
 
-public class DesktopDTO {
+public class MobileDTO {
     private String name;
     private String price;
     private byte[] photo;
     private List<String> specifications;
 
-    public DesktopDTO(String name, String price,  byte[] photo,List<String> specifications) {
+    public MobileDTO(String name, String price,byte[] photo,List<String> specifications){
         this.name = name;
         this.price = price;
         this.photo = photo;
         this.specifications=specifications;
+    }
 
+    public byte[] getPhoto() {
+        return photo;
     }
 
     public List<String> getSpecifications() {
@@ -22,10 +25,6 @@ public class DesktopDTO {
 
     public void setSpecifications(List<String> specifications) {
         this.specifications = specifications;
-    }
-
-    public byte[] getPhoto() {
-        return photo;
     }
 
     public void setPhoto(byte[] photo) {
