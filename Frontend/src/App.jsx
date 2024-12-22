@@ -15,6 +15,7 @@ import RamPage from './pages/RamPage';
 import ProcessorPage from './pages/ProcessorPage';
 import StoragePage from './pages/StoragePage';
 import MotherboardPage from './pages/MotherboardPage';
+import ShoppingCart from './pages/ShoppingCart';
 const App = () => {
   return (
     <div>
@@ -33,7 +34,7 @@ const App = () => {
             <Route path="/category/processors" element={<ProcessorPage />} />
             <Route path="/category/storage-drives" element={<StoragePage />} />
             <Route path="/category/motherboards" element={<MotherboardPage />} />
-
+            <Route path='/cart' element={<ShoppingCart />} />
             <Route path="/product/:productId" element={<ProductPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />

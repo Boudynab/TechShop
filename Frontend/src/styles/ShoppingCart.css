@@ -1,0 +1,36 @@
+.shopping-label{
+  color: #222831;
+  margin-left: 20px;
+  font-size: 30px;
+}
+
+.cart-container{
+  position: absolute;
+  left: 250px;
+  top: 70px;
+  width: 100%;
+
+}
+
+.Total-amount{
+  display: flex;
+  margin-left: 390px;
+  align-items: center;
+  justify-content: center;
+  background-color: #1f2937;
+  width: 220px;
+  height: 173px;
+  border-radius: 20px;
+  font-size: 38px;
+  flex-direction: column;
+}
+
+.confirmation-button{
+  width: 200px;
+  height: 40px;
+  border-radius: 15px;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
