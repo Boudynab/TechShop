@@ -1,13 +1,34 @@
-import React from 'react';
 import ProductCard from '../components/ProductCard';
-import motherboardImage from '../assets/images/moth.jpg';
-
+import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'; 
+import axios from 'axios'; 
 const MotherboardPage = () => {
-  const products = [
-    { id: 1, name: 'ASUS ROG Strix', price: '$250', image: motherboardImage, specifications: ["Chipset: Z590", "Form Factor: ATX", "Slots: PCIe 4.0", "Memory: DDR4"] },
-    { id: 2, name: 'MSI B450 TOMAHAWK', price: '$120', image: motherboardImage, specifications: ["Chipset: B450", "Form Factor: ATX", "Slots: PCIe 3.0", "Memory: DDR4"] },
-  ];
+  const { categoryName } = useParams(); 
+  const [products, setProducts] = useState([]); 
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null); 
 
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8080/TechShop/getAllMotherBoredId`);
+        console.log(response.data);  
+        setProducts(response.data);  
+      } catch (err) {
+        setError('Failed to fetch products');
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProducts();
+    console.log(products);
+  }, []);  
+  if (loading) {
+    return <div>Loading...</div>; 
+  }
+  if (error) {
+    return <div>{error}</div>; 
+  }
   return (
     <div className="category-page">
       <h2>Motherboards</h2>

@@ -1,7 +1,8 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
-// Styles for category page
+import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'; 
+import axios from 'axios'; 
+
  
 const CategoryPage = () => {
   const { categoryName } = useParams();

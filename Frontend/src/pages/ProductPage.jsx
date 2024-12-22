@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, useLocation } from 'react-router-dom';
-import '../styles/ProductPage.css'; // For styling
+import '../styles/ProductPage.css';
 
 const ProductPage = () => {
   const { productId } = useParams();
@@ -10,12 +10,11 @@ const ProductPage = () => {
   if (!product) {
     return <div>Product not found!</div>;
   }
-
   return (
     <div className="product-page">
       <div className="product-container">
         <div className="image-section">
-          <img src={product.image} alt={product.name} className="main-image" />
+         <img src={`data:image/jpeg;base64,${product.photo}`} alt="Decoded Photo" />
           <div className="thumbnail-row">
             {product.images?.map((image, index) => (
               <img key={index} src={image} alt={`Thumbnail ${index + 1}`} className="thumbnail" />

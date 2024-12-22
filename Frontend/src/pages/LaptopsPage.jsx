@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
-import axios from 'axios';
-
+import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'; 
+import axios from 'axios'; 
 const LaptopsPage = () => {
   const { categoryName } = useParams(); 
   const [products, setProducts] = useState([]); 

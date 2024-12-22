@@ -1,8 +1,6 @@
 package com.TechShop.TechShop.service;
 
-import com.TechShop.TechShop.repository.CategoryRepository;
-import com.TechShop.TechShop.repository.DesktopRepository;
-import com.TechShop.TechShop.repository.UserRepository;
+import com.TechShop.TechShop.repository.*;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,13 +12,23 @@ public class UserService {
     private final UserRepository userRepository;
     private final CategoryRepository categoryRepository;
     private final DesktopRepository desktopRepository;
+    private final MobileRepository mobileRepository;
+    private final MotherBoredRepository motherBoredRepository;
+    private final RamRepository ramRepository;
+    private final ProcessorsRepository processorsRepository;
+
+
 
 
     @Autowired
-    public UserService(UserRepository userRepository, CategoryRepository categoryRepository, DesktopRepository desktopRepository) {
+    public UserService(UserRepository userRepository, CategoryRepository categoryRepository, DesktopRepository desktopRepository,MobileRepository mobileRepository,MotherBoredRepository motherBoredRepository,RamRepository ramRepository,ProcessorsRepository processorsRepository) {
         this.userRepository = userRepository;
         this.categoryRepository = categoryRepository;
         this.desktopRepository = desktopRepository;
+        this.mobileRepository= mobileRepository;
+        this.motherBoredRepository= motherBoredRepository;
+        this.ramRepository=ramRepository;
+        this.processorsRepository=processorsRepository;
     }
     @Transactional
     public Object getUser(String email, String password) {
@@ -44,14 +52,14 @@ public class UserService {
     public Object getCategory(Long categoryID){
         Category category = categoryRepository.findById(categoryID).orElseThrow();
         if(category==null){
-            return "NOT FOUND";
+            return "Laptop not found";
         }
         return category;
     }
     @Transactional
     public Object addCategory(Long categoryId, CategoryDTO categoryDTO) {
         if (categoryRepository.findById(categoryId).isPresent()) {
-            return "Category already exists";
+            return "Laptop already exists";
         }
         Category category = new Category(
                 categoryDTO.getName(),
@@ -66,18 +74,19 @@ public class UserService {
         try {
             return categoryRepository.findAll();
         } catch (Exception e) {
-            throw new RuntimeException("Error fetching categories", e);
+            throw new RuntimeException("Error fetching Laptops", e);
         }
     }
     @Transactional
     public Object addDesktop(Long DesktopId, DesktopDTO desktopDTO) {
         if (desktopRepository.findById(DesktopId).isPresent()) {
-            return "Category already exists";
+            return "Desktop already exists";
         }
         Desktop desktop = new Desktop(
                 desktopDTO.getName(),
                 desktopDTO.getPrice(),
-                desktopDTO.getPhoto()
+                desktopDTO.getPhoto(),
+                desktopDTO.getSpecifications()
         );
         return desktopRepository.save(desktop);
     }
@@ -86,7 +95,91 @@ public class UserService {
         try {
             return desktopRepository.findAll();
         } catch (Exception e) {
-            throw new RuntimeException("Error fetching categories", e);
+            throw new RuntimeException("Error fetching Desktops", e);
+        }
+    }
+    @Transactional
+    public Object addMobile(Long MobileId, MobileDTO mobileIdDTO) {
+        if (mobileRepository.findById(MobileId).isPresent()) {
+            return "Mobile already exists";
+        }
+        Mobile mobile = new Mobile(
+                mobileIdDTO.getName(),
+                mobileIdDTO.getPrice(),
+                mobileIdDTO.getPhoto(),
+                mobileIdDTO.getSpecifications()
+        );
+        return mobileRepository.save(mobile);
+    }
+    @Transactional
+    public List<Mobile> getAllMobile() {
+        try {
+            return mobileRepository.findAll();
+        } catch (Exception e) {
+            throw new RuntimeException("Error fetching Mobiles", e);
+        }
+    }
+    @Transactional
+    public Object addMotherBored(Long MotherBoredId, MotherBoredDTO motherBoredDTO) {
+        if (mobileRepository.findById(MotherBoredId).isPresent()) {
+            return "MotherBored already exists";
+        }
+        MotherBoard motherBored = new MotherBoard(
+                motherBoredDTO.getName(),
+                motherBoredDTO.getPrice(),
+                motherBoredDTO.getPhoto(),
+                motherBoredDTO.getSpecifications()
+        );
+        return motherBoredRepository.save(motherBored);
+    }
+    @Transactional
+    public List<MotherBoard> getAllMotherBoard() {
+        try {
+            return motherBoredRepository.findAll();
+        } catch (Exception e) {
+            throw new RuntimeException("Error fetching MotherBoreds", e);
+        }
+    }
+    @Transactional
+    public Object addRam(Long RamId, RamDTO ramDTO) {
+        if (ramRepository.findById(RamId).isPresent()) {
+            return "Ram already exists";
+        }
+        Ram ram = new Ram(
+                ramDTO.getName(),
+                ramDTO.getPrice(),
+                ramDTO.getPhoto(),
+                ramDTO.getSpecifications()
+        );
+        return ramRepository.save(ram);
+    }
+    @Transactional
+    public List<Ram> getAllRam() {
+        try {
+            return ramRepository.findAll();
+        } catch (Exception e) {
+            throw new RuntimeException("Error fetching Rams", e);
+        }
+    }
+    @Transactional
+    public Object addProcessors(Long ProcessorsId, ProcessorsDto processorsDTO) {
+        if (processorsRepository.findById(ProcessorsId).isPresent()) {
+            return "Processor already exists";
+        }
+        Processors processors = new Processors(
+                processorsDTO.getName(),
+                processorsDTO.getPrice(),
+                processorsDTO.getPhoto(),
+                processorsDTO.getSpecifications()
+        );
+        return processorsRepository.save(processors);
+    }
+    @Transactional
+    public List<Processors> getAllProcessors() {
+        try {
+            return processorsRepository.findAll();
+        } catch (Exception e) {
+            throw new RuntimeException("Error fetching Processors", e);
         }
     }
 }

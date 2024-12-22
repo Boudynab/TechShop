@@ -7,16 +7,16 @@ import java.util.List;
 import static jakarta.persistence.GenerationType.SEQUENCE;
 
 @Entity
-public class Desktop {
+public class Processors {
     @Id
     @SequenceGenerator(
-            name ="desktop_sequence",
-            sequenceName = "desktop_sequence",
+            name ="Processors_sequence",
+            sequenceName = "Processors_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = SEQUENCE,
-            generator = "desktop_sequence"
+            generator = "Processors_sequence"
     )
     private Long id;
 
@@ -28,9 +28,9 @@ public class Desktop {
     private List<String> specifications;
 
 
-    public Desktop(){}
+    public Processors(){}
 
-    public Desktop(String name,String price,byte[] photo,List<String>specifications){
+    public Processors(String name,String price,byte[] photo,List<String>specifications){
         this.name =name;
         this.price=price;
         this.photo=photo;
@@ -45,12 +45,12 @@ public class Desktop {
         this.specifications = specifications;
     }
 
-    public byte[] getPhoto() {
-        return photo;
+    public Long getId() {
+        return id;
     }
 
-    public void setPhoto(byte[] photo) {
-        this.photo = photo;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getPrice() {
@@ -68,12 +68,11 @@ public class Desktop {
     public void setName(String name) {
         this.name = name;
     }
-
-    public Long getId() {
-        return id;
+    public byte[] getPhoto() {
+        return photo;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
     }
 }
