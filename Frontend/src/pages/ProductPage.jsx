@@ -14,7 +14,7 @@ const ProductPage = () => {
     <div className="product-page">
       <div className="product-container">
         <div className="image-section">
-          <img src={product.image} alt={product.name} className="main-image" />
+         <img src={`data:image/jpeg;base64,${product.photo}`} alt="Decoded Photo" />
           <div className="thumbnail-row">
             {product.images?.map((image, index) => (
               <img key={index} src={image} alt={`Thumbnail ${index + 1}`} className="thumbnail" />
