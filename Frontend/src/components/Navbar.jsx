@@ -1,20 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaShoppingCart, FaUserAlt, FaPhone, FaEnvelope } from "react-icons/fa";
+import { FaShoppingCart, FaUserAlt, FaPhone, FaEnvelope, FaUserCircle } from "react-icons/fa";
 import SearchBar from "./SearchBar";
 import '../styles/global.css';
 import '../styles/navbar.css';
 import logo1 from '../assets/images/logo1.jpg';
+import ProfileModal from "./ProfileModal"; // Import the ProfileModal component
 
 const Navbar = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleProfileClick = () => {
+    setIsModalOpen(true); // Open the modal when the profile icon is clicked
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false); // Close the modal
+  };
+
   return (
     <nav className="navbar">
       <div className="navbar-logo">
         <Link to="/"><img src={logo1} alt="TechShop Logo" className="logo-image" /></Link>
       </div>
       <div className="navbar-contact">
-        <FaEnvelope className="navbar-icon" />
-        <FaPhone className="navbar-icon" />
+        <a href="mailto:omar2004khaled@gmail.com" className="navbar-icon-link">
+          <FaEnvelope className="navbar-icon" />
+        </a>
+        <a href="tel:+01212121212" className="navbar-icon-link">
+          <FaPhone className="navbar-icon" />
+        </a>
       </div>
       <SearchBar />
       <div className="navbar-actions">
@@ -27,7 +42,14 @@ const Navbar = () => {
         <Link to="/cart" className="navbar-action">
           <FaShoppingCart className="navbar-icon" /> Cart
         </Link>
+        {/* User Profile Button */}
+        <button className="navbar-action" onClick={handleProfileClick}>
+          <FaUserCircle className="navbar-icon" /> Profile
+        </button>
       </div>
+
+      {/* Profile Modal */}
+      {isModalOpen && <ProfileModal onClose={handleCloseModal} />}
     </nav>
   );
 };

@@ -2,12 +2,15 @@ import ProductCard from '../components/ProductCard';
 import { useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react'; 
 import axios from 'axios'; 
+import { useNavigate } from 'react-router-dom';
+
 const MotherboardPage = () => {
   const { categoryName } = useParams(); 
   const [products, setProducts] = useState([]); 
   const [loading, setLoading] = useState(true); 
   const [error, setError] = useState(null); 
-
+  const [selectedProducts, setSelectedProducts] = useState([]);
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -23,6 +26,23 @@ const MotherboardPage = () => {
     fetchProducts();
     console.log(products);
   }, []);  
+
+  const handleCompareSelection = (product, isSelected) => {
+    if (isSelected) {
+      setSelectedProducts((prev) => [...prev, product]);
+    } else {
+      setSelectedProducts((prev) => prev.filter((p) => p.id !== product.id));
+    }
+  };
+
+  const compareProducts = () => {
+    if (selectedProducts.length === 2) {
+      navigate('/compare', { state: { products: selectedProducts } });
+    } else {
+      alert('Please select exactly 2 products for comparison.');
+    }
+  };
+
   if (loading) {
     return <div>Loading...</div>; 
   }
@@ -34,9 +54,11 @@ const MotherboardPage = () => {
       <h2>Motherboards</h2>
       <div className="product-list">
         {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard key={product.id} product={product} handleCompareSelection={handleCompareSelection} />
         ))}
       </div>
+      <button className="compare-button" onClick={compareProducts}>Compare Selected Products</button>
+
     </div>
   );
 };

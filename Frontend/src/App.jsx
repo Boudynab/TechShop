@@ -16,6 +16,9 @@ import ProcessorPage from './pages/ProcessorPage';
 import StoragePage from './pages/StoragePage';
 import MotherboardPage from './pages/MotherboardPage';
 import ShoppingCart from './pages/ShoppingCart';
+
+import ComparePage from './pages/ComparePage';
+
 const App = () => {
   return (
     <div>
@@ -36,6 +39,7 @@ const App = () => {
             <Route path="/category/motherboards" element={<MotherboardPage />} />
             <Route path='/cart' element={<ShoppingCart />} />
             <Route path="/product/:productId" element={<ProductPage />} />
+            <Route path="/compare" element={<ComparePage />} /> 
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
           </Routes>

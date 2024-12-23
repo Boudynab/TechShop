@@ -76,4 +76,26 @@ body {
   display: block;
   margin: 10px;
 }
- 
+
+.navbar-action {
+  background-color: #00b5b8; /* Blue background */
+  color: #fff; /* White text */
+  padding: 10px 20px; /* Padding inside the button */
+  border-radius: 5px; /* Rounded corners */
+  font-size: 16px; /* Font size for text */
+  display: flex; /* Flexbox for the icon and text alignment */
+  align-items: center; /* Center the icon vertically */
+  gap: 8px; /* Space between icon and text */
+  cursor: pointer; /* Cursor change on hover */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+  border: none; /* Remove default border */
+}
+
+.navbar-action:hover {
+  background-color: #00b5b8; /* Darker blue on hover */
+  transform: translateY(-2px); /* Slight upward movement on hover */
+}
+
+.navbar-icon {
+  font-size: 18px; /* Icon size */
+}
