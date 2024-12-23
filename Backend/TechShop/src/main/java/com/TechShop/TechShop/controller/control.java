@@ -189,4 +189,22 @@ public class control {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal Server Error");
         }
     }
+    @GetMapping("/search/Category/{criteria}")
+    public ResponseEntity<Object> searchCategories(@PathVariable String criteria) {
+        try {
+            Object result = userService.searchAllCategories(criteria);
+            return ResponseEntity.ok(result);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error: " + e.getMessage());
+        }
+    }
+    @GetMapping("/search/Ram/{criteria}")
+    public ResponseEntity<Object> searchRam(@PathVariable String criteria) {
+        try {
+            Object result = userService.searchAllRams(criteria);
+            return ResponseEntity.ok(result);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error: " + e.getMessage());
+        }
+    }
 }

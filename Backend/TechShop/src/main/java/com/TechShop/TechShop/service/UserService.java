@@ -1,11 +1,16 @@
 package com.TechShop.TechShop.service;
 
 import com.TechShop.TechShop.repository.*;
+import com.TechShop.TechShop.service.search.Criteria;
+import com.TechShop.TechShop.service.search.CriteriaFactory;
+import com.TechShop.TechShop.service.search.FilterDTO;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -182,4 +187,13 @@ public class UserService {
             throw new RuntimeException("Error fetching Processors", e);
         }
     }
+    public Object searchAllCategories(String criteria) {
+        List<Category> allCategories = categoryRepository.findAll();
+        return FilterFacadeCategory.filter(new FilterDTO(), allCategories, criteria);
+    }
+    public Object searchAllRams(String criteria) {
+        List<Ram> allRam = ramRepository.findAll();
+        return FilterFacadeRams.filter(new FilterDTO(), allRam, criteria);
+    }
+
 }
