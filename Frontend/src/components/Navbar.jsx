@@ -23,15 +23,7 @@ const Navbar = () => {
       <div className="navbar-logo">
         <Link to="/"><img src={logo1} alt="TechShop Logo" className="logo-image" /></Link>
       </div>
-      <div className="navbar-contact">
-        <a href="mailto:omar2004khaled@gmail.com" className="navbar-icon-link">
-          <FaEnvelope className="navbar-icon" />
-        </a>
-        <a href="tel:+01212121212" className="navbar-icon-link">
-          <FaPhone className="navbar-icon" />
-        </a>
-      </div>
-      <SearchBar />
+
       <div className="navbar-actions">
         <Link to="/login" className="navbar-action">
           <FaUserAlt className="navbar-icon" /> Log In
@@ -50,6 +42,16 @@ const Navbar = () => {
 
       {/* Profile Modal */}
       {isModalOpen && <ProfileModal onClose={handleCloseModal} />}
+
+      <div className="navbar-contact">
+        <a href="mailto:omar2004khaled@gmail.com" className="navbar-icon-link">
+          <FaEnvelope className="navbar-icon" />
+        </a>
+        <a href="tel:+01212121212" className="navbar-icon-link">
+          <FaPhone className="navbar-icon" />
+        </a>
+      </div>
+
     </nav>
   );
 };

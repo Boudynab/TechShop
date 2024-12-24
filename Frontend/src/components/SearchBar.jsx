@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 
-const SearchBar = () => {
+const SearchBar = ({ onSearch }) => {
   const [query, setQuery] = useState("");
 
   const handleSearch = () => {
-    // handle search logic (e.g., filter products or redirect to search page)
-    console.log(query);
+    if (onSearch) {
+      onSearch(query); // Trigger the search in the current page
+    }
   };
 
   return (
