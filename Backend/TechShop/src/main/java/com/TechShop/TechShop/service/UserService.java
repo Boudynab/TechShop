@@ -195,5 +195,20 @@ public class UserService {
         List<Ram> allRam = ramRepository.findAll();
         return FilterFacadeRams.filter(new FilterDTO(), allRam, criteria);
     }
-
+    public Object searchAllDesktops(String criteria) {
+        List<Desktop> allRam = desktopRepository.findAll();
+        return FilterFacadeDesktop.filter(new FilterDTO(), allRam, criteria);
+    }
+    public Object searchAllMobiles(String criteria) {
+        List<Mobile> allMobiles = mobileRepository.findAll();
+        return FilterFacadeMobile.filter(new FilterDTO(), allMobiles, criteria);
+    }
+    public Object searchAllProcessors(String criteria) {
+        List<Processors> allProcessors = processorsRepository.findAll();
+        return FilterFacadeProcessor.filter(new FilterDTO(), allProcessors, criteria);
+    }
+    public Object searchAllMotherBoreds(String criteria) {
+        List<MotherBoard> allMotherBoreds = motherBoredRepository.findAll();
+        return FilterFacadeMotherboard.filter(new FilterDTO(), allMotherBoreds, criteria);
+    }
 }

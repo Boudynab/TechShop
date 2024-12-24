@@ -207,4 +207,49 @@ public class control {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error: " + e.getMessage());
         }
     }
+    @GetMapping("/search/Desktop/{criteria}")
+    public ResponseEntity<Object> searchDesktop(@PathVariable String criteria) {
+        try {
+            Object result = userService.searchAllDesktops(criteria);
+            return ResponseEntity.ok(result);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error: " + e.getMessage());
+        }
+    }
+    @GetMapping("/search/Mobile/{criteria}")
+    public ResponseEntity<Object> searchMobile(@PathVariable String criteria) {
+        try {
+            Object result = userService.searchAllMobiles(criteria);
+            return ResponseEntity.ok(result);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error: " + e.getMessage());
+        }
+    }
+    @GetMapping("/search/MotherBored/{criteria}")
+    public ResponseEntity<Object> searchMotherBored(@PathVariable String criteria) {
+        try {
+            Object result = userService.searchAllMotherBoreds(criteria);
+            return ResponseEntity.ok(result);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error: " + e.getMessage());
+        }
+    }
+    @GetMapping("/search/Processors/{criteria}")
+    public ResponseEntity<Object> searchProcessors(@PathVariable String criteria) {
+        try {
+            Object result = userService.searchAllProcessors(criteria);
+            return ResponseEntity.ok(result);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error: " + e.getMessage());
+        }
+    }
+    // @GetMapping("/search/All/{criteria}")
+    // public ResponseEntity<Object> searchAll(@PathVariable String criteria) {
+    //     try {
+    //         Object result = userService.searchAll(criteria);
+    //         return ResponseEntity.ok(result);
+    //     } catch (Exception e) {
+    //         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error: " + e.getMessage());
+    //     }
+    // }
 }

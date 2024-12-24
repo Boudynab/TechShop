@@ -15,35 +15,32 @@ public class DesktopDTO {
         this.specifications=specifications;
 
     }
-
+    public DesktopDTO(String name, String price,List<String> specifications) {
+        this.name = name;
+        this.price = price;
+        this.specifications=specifications;
+    }
     public List<String> getSpecifications() {
         return specifications;
     }
-
     public void setSpecifications(List<String> specifications) {
         this.specifications = specifications;
     }
-
     public byte[] getPhoto() {
         return photo;
     }
-
     public void setPhoto(byte[] photo) {
         this.photo = photo;
     }
-
     public String getPrice() {
         return price;
     }
-
     public void setPrice(String price) {
         this.price = price;
     }
-
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }

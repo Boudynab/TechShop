@@ -14,6 +14,11 @@ public class MobileDTO {
         this.photo = photo;
         this.specifications=specifications;
     }
+    public MobileDTO(String name, String price,List<String> specifications){
+        this.name = name;
+        this.price = price;
+        this.specifications=specifications;
+    }
 
     public byte[] getPhoto() {
         return photo;

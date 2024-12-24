@@ -5,7 +5,6 @@ public class CriteriaFactory {
             return switch (criteria) {
 //                case "name" -> new Criterianame(dto);
 //                case "price" -> new Criterianprice(dto);
-//                case "sender" -> new C(dto);
                 default -> new OrCriteria(criteria);
             };
         }

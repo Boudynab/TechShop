@@ -36,6 +36,12 @@ public class Processors {
         this.photo=photo;
         this.specifications=specifications;
     }
+    public Processors(String name,String price,List<String>specifications){
+        this.name =name;
+        this.price=price;
+        this.specifications=specifications;
+    }
+
 
     public List<String> getSpecifications() {
         return specifications;

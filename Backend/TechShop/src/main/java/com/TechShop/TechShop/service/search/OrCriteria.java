@@ -1,6 +1,10 @@
 package com.TechShop.TechShop.service.search;
 
 import com.TechShop.TechShop.service.Category;
+import com.TechShop.TechShop.service.Desktop;
+import com.TechShop.TechShop.service.Mobile;
+import com.TechShop.TechShop.service.MotherBoard;
+import com.TechShop.TechShop.service.Processors;
 import com.TechShop.TechShop.service.Ram;
 
 import java.util.ArrayList;
@@ -43,6 +47,62 @@ public class OrCriteria implements Criteria {
         }
         if (criteria3 != null) {
             criteriaFilters.addAll(criteria3.meetCriteriaRam(rams));
+        }
+        return new ArrayList<>(criteriaFilters);
+    }
+    @Override
+    public List<Desktop> meetCriteriaDesktop(List<Desktop> desktops) {
+        Set<Desktop> criteriaFilters = new HashSet<>();
+        if (criteria1 != null) {
+            criteriaFilters.addAll(criteria1.meetCriteriaDesktop(desktops));
+        }
+        if (criteria2 != null) {
+            criteriaFilters.addAll(criteria2.meetCriteriaDesktop(desktops));
+        }
+        if (criteria3 != null) {
+            criteriaFilters.addAll(criteria3.meetCriteriaDesktop(desktops));
+        }
+        return new ArrayList<>(criteriaFilters);
+    }
+    @Override
+    public List<Mobile> meetCriteriaMobiles(List<Mobile> mobiles) {
+        Set<Mobile> criteriaFilters = new HashSet<>();
+        if (criteria1 != null) {
+            criteriaFilters.addAll(criteria1.meetCriteriaMobiles(mobiles));
+        }
+        if (criteria2 != null) {
+            criteriaFilters.addAll(criteria2.meetCriteriaMobiles(mobiles));
+        }
+        if (criteria3 != null) {
+            criteriaFilters.addAll(criteria3.meetCriteriaMobiles(mobiles));
+        }
+        return new ArrayList<>(criteriaFilters);
+    }
+    @Override
+    public List<Processors> meetCriteriaProcessors(List<Processors> processors) {
+        Set<Processors> criteriaFilters = new HashSet<>();
+        if (criteria1 != null) {
+            criteriaFilters.addAll(criteria1.meetCriteriaProcessors(processors));
+        }
+        if (criteria2 != null) {
+            criteriaFilters.addAll(criteria2.meetCriteriaProcessors(processors));
+        }
+        if (criteria3 != null) {
+            criteriaFilters.addAll(criteria3.meetCriteriaProcessors(processors));
+        }
+        return new ArrayList<>(criteriaFilters);
+    }
+    @Override
+    public List<MotherBoard> meetCriteriaMotherbored(List<MotherBoard> motherBoards) {
+        Set<MotherBoard> criteriaFilters = new HashSet<>();
+        if (criteria1 != null) {
+            criteriaFilters.addAll(criteria1.meetCriteriaMotherbored(motherBoards));
+        }
+        if (criteria2 != null) {
+            criteriaFilters.addAll(criteria2.meetCriteriaMotherbored(motherBoards));
+        }
+        if (criteria3 != null) {
+            criteriaFilters.addAll(criteria3.meetCriteriaMotherbored(motherBoards));
         }
         return new ArrayList<>(criteriaFilters);
     }
