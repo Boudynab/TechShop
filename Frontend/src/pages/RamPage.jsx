@@ -2,16 +2,17 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import ProductCard from "../components/ProductCard";
-import SearchBar from "../components/SearchBar"; // Import the SearchBar  //meow
-
+import SearchBar from "../components/SearchBar"; // Import the SearchBar
 import { useNavigate } from 'react-router-dom';
+
 const RamPage = () => {
   const { categoryName } = useParams();
   const [products, setProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]);   //meow search
+  const [filteredProducts, setFilteredProducts] = useState([]); // meow search
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedProducts, setSelectedProducts] = useState([]);
+  const [sortState, setSortState] = useState(1); // 1 = ascending, 2 = descending
   const navigate = useNavigate();
 
   // Fetch products from the backend
@@ -46,13 +47,28 @@ const RamPage = () => {
     }
   };
 
-  // Search functionality    //meow
+  // Search functionality
   const handleSearch = (query) => {
     const lowerCaseQuery = query.toLowerCase();
     const filtered = products.filter((product) =>
       product.name.toLowerCase().includes(lowerCaseQuery)
     );
     setFilteredProducts(filtered); // Update the filtered products
+  };
+
+  // Sorting functionality
+  const handleSort = () => {
+    let sortedProducts = [...filteredProducts];
+    if (sortState === 1) {
+      // Ascending state - sort by price ascending
+      sortedProducts.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+      setSortState(2); // Change to descending state
+    } else if (sortState === 2) {
+      // Descending state - sort by price descending
+      sortedProducts.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+      setSortState(1); // Change to ascending state
+    }
+    setFilteredProducts(sortedProducts); // Update the filtered products with sorted order
   };
 
   // Loading or error state
@@ -69,6 +85,12 @@ const RamPage = () => {
       <h2>{categoryName || "RAM"} Products</h2>
       {/* Include the SearchBar and pass handleSearch */}  
       <SearchBar onSearch={handleSearch} />
+      <div className="sort-button-container">
+        {/* Two-State Sort Button */}
+        <button className="sort-button" onClick={handleSort}>
+          {sortState === 1 ? "Sort by Price (Descending)" : "Sort by Price (Ascending)"}
+        </button>
+      </div>
       <div className="product-list">
         {filteredProducts.map((product) => (
           <ProductCard key={product.id} product={product} handleCompareSelection={handleCompareSelection} />

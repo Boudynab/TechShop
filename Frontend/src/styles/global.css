@@ -266,3 +266,33 @@ footer p {
   background-color: #aaa;
   cursor: not-allowed;
 }
+
+
+
+.sort-button {
+  padding: 10px 20px;
+  background-color: #00b4d8;
+  color: white;
+  border: 2px solid #00b4d8;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin: 10px 0;
+  margin-left: 20px;
+}
+
+.sort-button:hover {
+  background-color: #00b4d8;
+  transform: scale(1.05);
+}
+
+.sort-button:active {
+  background-color: #00b4d8;
+  transform: scale(0.98);
+}
+
+.sort-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+}

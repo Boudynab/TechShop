@@ -7,16 +7,20 @@ import { useNavigate } from 'react-router-dom';
 const MotherboardPage = () => {
   const { categoryName } = useParams(); 
   const [products, setProducts] = useState([]); 
+  const [filteredProducts, setFilteredProducts] = useState([]);  // meow search
   const [loading, setLoading] = useState(true); 
   const [error, setError] = useState(null); 
   const [selectedProducts, setSelectedProducts] = useState([]);
+  const [sortState, setSortState] = useState(1); // 1 = ascending, 2 = descending
   const navigate = useNavigate();
+
+  // Fetch products from the backend
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(`http://localhost:8080/TechShop/getAllMotherBoredId`);
-        console.log(response.data);  
-        setProducts(response.data);  
+        setProducts(response.data); 
+        setFilteredProducts(response.data); // Initialize with all products
       } catch (err) {
         setError('Failed to fetch products');
       } finally {
@@ -24,9 +28,9 @@ const MotherboardPage = () => {
       }
     };
     fetchProducts();
-    console.log(products);
   }, []);  
 
+  // Handle product comparison selection
   const handleCompareSelection = (product, isSelected) => {
     if (isSelected) {
       setSelectedProducts((prev) => [...prev, product]);
@@ -35,6 +39,7 @@ const MotherboardPage = () => {
     }
   };
 
+  // Compare selected products
   const compareProducts = () => {
     if (selectedProducts.length === 2) {
       navigate('/compare', { state: { products: selectedProducts } });
@@ -43,22 +48,53 @@ const MotherboardPage = () => {
     }
   };
 
+  // Sorting functionality
+  const handleSort = () => {
+    let sortedProducts = [...filteredProducts];
+    if (sortState === 1) {
+      // Ascending state - sort by price ascending
+      sortedProducts.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+      setSortState(2); // Change to descending state
+    } else if (sortState === 2) {
+      // Descending state - sort by price descending
+      sortedProducts.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+      setSortState(1); // Change to ascending state
+    }
+    setFilteredProducts(sortedProducts); // Update filtered products with sorted order
+  };
+
+  // Loading or error state
   if (loading) {
-    return <div>Loading...</div>; 
+    return <div>Loading...</div>;
   }
   if (error) {
-    return <div>{error}</div>; 
+    return <div>{error}</div>;
   }
+
   return (
     <div className="category-page">
-      <h2>Motherboards</h2>
+      <h2>{categoryName || "Motherboards"}</h2>
+      
+      {/* Sort Button */}
+      <div className="sort-button-container">
+        <button className="sort-button" onClick={handleSort}>
+          {sortState === 1 ? "Sort by Price (Descending)" : "Sort by Price (Ascending)"}
+        </button>
+      </div>
+      
       <div className="product-list">
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} handleCompareSelection={handleCompareSelection} />
+        {filteredProducts.map((product) => (
+          <ProductCard 
+            key={product.id} 
+            product={product} 
+            handleCompareSelection={handleCompareSelection} 
+          />
         ))}
       </div>
-      <button className="compare-button" onClick={compareProducts}>Compare Selected Products</button>
 
+      <button className="compare-button" onClick={compareProducts}>
+        Compare Selected Products
+      </button>
     </div>
   );
 };

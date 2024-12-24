@@ -1,21 +1,24 @@
-import ProductCard from '../components/ProductCard';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import React, { useState, useEffect } from 'react'; 
-import axios from 'axios'; 
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import ProductCard from '../components/ProductCard';
+
 const ProcessorPage = () => {
-  const { categoryName } = useParams(); 
-  const [products, setProducts] = useState([]); 
-  const [loading, setLoading] = useState(true); 
-  const [error, setError] = useState(null); 
+  const { categoryName } = useParams();
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [selectedProducts, setSelectedProducts] = useState([]);
+  const [sortState, setSortState] = useState(1); // 1: Ascending, 2: Descending
   const navigate = useNavigate();
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/TechShop/getAllProcessors`);
-        console.log(response.data);  
-        setProducts(response.data);  
+        const response = await axios.get('http://localhost:8080/TechShop/getAllProcessors');
+        console.log(response.data);
+        setProducts(response.data);
       } catch (err) {
         setError('Failed to fetch products');
       } finally {
@@ -23,13 +26,13 @@ const ProcessorPage = () => {
       }
     };
     fetchProducts();
-    console.log(products);
-  }, []);  
+  }, []);
+
   if (loading) {
-    return <div>Loading...</div>; 
+    return <div>Loading...</div>;
   }
   if (error) {
-    return <div>{error}</div>; 
+    return <div>{error}</div>;
   }
 
   const handleCompareSelection = (product, isSelected) => {
@@ -48,16 +51,34 @@ const ProcessorPage = () => {
     }
   };
 
+  const sortProducts = () => {
+    let sortedProducts;
+    if (sortState === 1) {
+      // Ascending order
+      sortedProducts = [...products].sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+      setSortState(2); // Switch to descending
+    } else {
+      // Descending order
+      sortedProducts = [...products].sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+      setSortState(1); // Switch to ascending
+    }
+    setProducts(sortedProducts);
+  };
 
   return (
     <div className="category-page">
       <h2>Processors</h2>
+      <button className="sort-button" onClick={sortProducts}>
+        {sortState === 1 ? 'Sort by Price: Ascending' : 'Sort by Price: Descending'}
+      </button>
       <div className="product-list">
         {products.map((product) => (
-          <ProductCard key={product.id} product={product} handleCompareSelection={handleCompareSelection}/>
+          <ProductCard key={product.id} product={product} handleCompareSelection={handleCompareSelection} />
         ))}
       </div>
-      <button className="compare-button" onClick={compareProducts}>Compare Selected Products</button>
+      <button className="compare-button" onClick={compareProducts}>
+        Compare Selected Products
+      </button>
     </div>
   );
 };
