@@ -224,6 +224,22 @@ public class UserService {
                     String itemType = cartItem.getItemType();
                     Long itemId = cartItem.getItemId();
                     switch (itemType.toLowerCase()) {
+                        case "processors":
+                            Processors processors = processorsRepository.findById(itemId)
+                                .orElseThrow(() -> new RuntimeException("Processor item not found for ID: " + itemId));
+                            return processors;
+                        case "desktop":
+                            Desktop desktop = desktopRepository.findById(itemId)
+                                .orElseThrow(() -> new RuntimeException("Desktop item not found for ID: " + itemId));
+                            return desktop;
+                        case "motherboard":
+                            MotherBoard motherBoard = motherBoredRepository.findById(itemId)
+                                .orElseThrow(() -> new RuntimeException("Motherboard item not found for ID: " + itemId));
+                            return motherBoard;
+                        case "category":
+                            Category category = categoryRepository.findById(itemId)
+                                .orElseThrow(() -> new RuntimeException("Category item not found for ID: " + itemId));
+                            return category;
                         case "mobile":
                             Mobile mobile = mobileRepository.findById(itemId)
                                 .orElseThrow(() -> new RuntimeException("Mobile item not found for ID: " + itemId));
