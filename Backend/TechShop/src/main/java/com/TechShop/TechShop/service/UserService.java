@@ -8,6 +8,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,12 +22,13 @@ public class UserService {
     private final MotherBoredRepository motherBoredRepository;
     private final RamRepository ramRepository;
     private final ProcessorsRepository processorsRepository;
+    private final ShoppingCartRepository shoppingCartRepository;
 
 
 
 
     @Autowired
-    public UserService(UserRepository userRepository, CategoryRepository categoryRepository, DesktopRepository desktopRepository,MobileRepository mobileRepository,MotherBoredRepository motherBoredRepository,RamRepository ramRepository,ProcessorsRepository processorsRepository) {
+    public UserService(UserRepository userRepository, CategoryRepository categoryRepository, DesktopRepository desktopRepository,MobileRepository mobileRepository,MotherBoredRepository motherBoredRepository,RamRepository ramRepository,ProcessorsRepository processorsRepository,ShoppingCartRepository shoppingCartRepository) {
         this.userRepository = userRepository;
         this.categoryRepository = categoryRepository;
         this.desktopRepository = desktopRepository;
@@ -34,6 +36,7 @@ public class UserService {
         this.motherBoredRepository= motherBoredRepository;
         this.ramRepository=ramRepository;
         this.processorsRepository=processorsRepository;
+        this.shoppingCartRepository=shoppingCartRepository;
     }
     @Transactional
     public Object getUser(String email, String password) {
@@ -210,5 +213,42 @@ public class UserService {
     public Object searchAllMotherBoreds(String criteria) {
         List<MotherBoard> allMotherBoreds = motherBoredRepository.findAll();
         return FilterFacadeMotherboard.filter(new FilterDTO(), allMotherBoreds, criteria);
+    }
+    public List<ShoppingCart> getCartByUserId(Long userId) {
+        return shoppingCartRepository.findByUserId(userId);
+    }
+    public List<Object> getCartItems(Long userId) {
+        List<ShoppingCart> cartItems = shoppingCartRepository.findByUserId(userId);
+        return cartItems.stream()
+                .map(cartItem -> {
+                    String itemType = cartItem.getItemType();
+                    Long itemId = cartItem.getItemId();
+                    switch (itemType.toLowerCase()) {
+                        case "mobile":
+                            Mobile mobile = mobileRepository.findById(itemId)
+                                .orElseThrow(() -> new RuntimeException("Mobile item not found for ID: " + itemId));
+                            return mobile;
+                        case "ram":
+                            Ram ram = ramRepository.findById(itemId)
+                                .orElseThrow(() -> new RuntimeException("RAM item not found for ID: " + itemId));
+                            return ram;
+                        default:
+                            throw new RuntimeException("Unsupported item type: " + itemType);
+                    }
+                })
+                .collect(Collectors.toList());
+    }
+    public ShoppingCart addItemToCart(Long userId, Long itemId, String itemType, Integer quantity) {
+        ShoppingCart cartItem = new ShoppingCart();
+        User user = userRepository.findById(userId).orElseThrow();
+        cartItem.setUser(user);
+        cartItem.setItemId(itemId);
+        cartItem.setItemType(itemType);
+        cartItem.setQuantity(quantity);
+        return shoppingCartRepository.save(cartItem);
+    }
+
+    public void removeItemFromCart(Long cartItemId) {
+        shoppingCartRepository.deleteById(cartItemId);
     }
 }

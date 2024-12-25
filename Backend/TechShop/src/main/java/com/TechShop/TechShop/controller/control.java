@@ -1,6 +1,14 @@
 package com.TechShop.TechShop.controller;
 
-import com.TechShop.TechShop.service.*;
+import com.TechShop.TechShop.service.UserService;
+import com.TechShop.TechShop.repository.ShoppingCartRepository;
+import com.TechShop.TechShop.service.CategoryDTO;
+import com.TechShop.TechShop.service.DesktopDTO;
+import com.TechShop.TechShop.service.MobileDTO;
+import com.TechShop.TechShop.service.MotherBoredDTO;
+import com.TechShop.TechShop.service.ProcessorsDto;
+import com.TechShop.TechShop.service.RamDTO;
+import com.TechShop.TechShop.service.ShoppingCart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +23,6 @@ import java.util.List;
 public class control {
     private final UserService userService;
 
-    @Autowired
     public control(UserService userService) {
         this.userService = userService;
     }
@@ -252,4 +259,26 @@ public class control {
     //         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error: " + e.getMessage());
     //     }
     // }
+    @GetMapping("/getCart/{userId}")
+    public ResponseEntity<List<Object>> getCart(@PathVariable Long userId) {
+        List<Object> itemDetails = userService.getCartItems(userId);
+        return ResponseEntity.ok(itemDetails);
+    }
+
+    @PostMapping("/addcart")
+    public ResponseEntity<ShoppingCart> addToCart(@RequestBody AddToCartRequest request) {
+        ShoppingCart cartItem = userService.addItemToCart(
+                request.getUserId(),
+                request.getItemId(),
+                request.getItemType(),
+                request.getQuantity()
+        );
+        return ResponseEntity.ok(cartItem);
+    }
+
+    @DeleteMapping("/remove/{cartItemId}")
+    public ResponseEntity<Void> removeFromCart(@PathVariable Long cartItemId) {
+        userService.removeItemFromCart(cartItemId);
+        return ResponseEntity.noContent().build();
+    }
 }

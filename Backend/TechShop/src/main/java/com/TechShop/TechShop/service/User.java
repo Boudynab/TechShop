@@ -3,9 +3,14 @@ package com.TechShop.TechShop.service;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 
 import static jakarta.persistence.GenerationType.SEQUENCE;
+
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 
 @Entity
 public class User {
@@ -24,6 +29,10 @@ public class User {
     private String username;
     private String email;
     private String password;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ShoppingCart> shoppingCart;
+
 
     public User(){}
 
