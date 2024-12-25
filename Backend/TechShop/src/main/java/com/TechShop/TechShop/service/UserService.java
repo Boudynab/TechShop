@@ -251,4 +251,7 @@ public class UserService {
     public void removeItemFromCart(Long cartItemId) {
         shoppingCartRepository.deleteById(cartItemId);
     }
+    public void removeAllItem() {
+        shoppingCartRepository.deleteAll();
+    }
 }

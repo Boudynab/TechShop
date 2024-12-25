@@ -276,9 +276,14 @@ public class control {
         return ResponseEntity.ok(cartItem);
     }
 
-    @DeleteMapping("/remove/{cartItemId}")
+    @DeleteMapping("/removeItem/{cartItemId}")
     public ResponseEntity<Void> removeFromCart(@PathVariable Long cartItemId) {
         userService.removeItemFromCart(cartItemId);
+        return ResponseEntity.noContent().build();
+    }
+    @DeleteMapping("/removeItem")
+    public ResponseEntity<Void> removeAllFromCart() {
+        userService.removeAllItem();
         return ResponseEntity.noContent().build();
     }
 }
