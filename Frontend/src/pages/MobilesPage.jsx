@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'; 
 import ProductCard from '../components/ProductCard';
+import SearchBar from "../components/SearchBar"; // Import the SearchBar
+
 
 const MobilesPage = () => {
   const { categoryName } = useParams(); 
@@ -69,10 +71,22 @@ const MobilesPage = () => {
     }
   };
 
+
+        // Search functionality
+        const handleSearch = (query) => {
+          const lowerCaseQuery = query.toLowerCase();
+          const filtered = products.filter((product) =>
+            product.name.toLowerCase().includes(lowerCaseQuery)
+          );
+          setFilteredProducts(filtered); // Update the filtered products
+        };
+
+
   return (
     <div className="category-page">
       <h2>{categoryName} Mobiles</h2>
-
+                       {/* Include the SearchBar and pass handleSearch */}  
+                       <SearchBar onSearch={handleSearch} />
       {/* Sort Button */}
       <div className="sort-button-container">
         <button className="sort-button" onClick={handleSort}>

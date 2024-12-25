@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react'; 
 import axios from 'axios'; 
 import { useNavigate } from 'react-router-dom';
+import SearchBar from "../components/SearchBar"; // Import the SearchBar
 
 const MotherboardPage = () => {
   const { categoryName } = useParams(); 
@@ -29,6 +30,16 @@ const MotherboardPage = () => {
     };
     fetchProducts();
   }, []);  
+
+    // Search functionality
+    const handleSearch = (query) => {
+      const lowerCaseQuery = query.toLowerCase();
+      const filtered = products.filter((product) =>
+        product.name.toLowerCase().includes(lowerCaseQuery)
+      );
+      setFilteredProducts(filtered); // Update the filtered products
+    };
+  
 
   // Handle product comparison selection
   const handleCompareSelection = (product, isSelected) => {
@@ -74,7 +85,8 @@ const MotherboardPage = () => {
   return (
     <div className="category-page">
       <h2>{categoryName || "Motherboards"}</h2>
-      
+            {/* Include the SearchBar and pass handleSearch */}  
+            <SearchBar onSearch={handleSearch} />
       {/* Sort Button */}
       <div className="sort-button-container">
         <button className="sort-button" onClick={handleSort}>

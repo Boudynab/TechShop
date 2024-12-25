@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios'; 
 import { useNavigate } from 'react-router-dom'; 
 import ProductCard from '../components/ProductCard';
+import SearchBar from "../components/SearchBar"; // Import the SearchBar
 
 const DesktopsPage = () => {
   const { categoryName } = useParams(); 
@@ -72,9 +73,22 @@ const DesktopsPage = () => {
     }
   };
 
+      // Search functionality
+      const handleSearch = (query) => {
+        const lowerCaseQuery = query.toLowerCase();
+        const filtered = products.filter((product) =>
+          product.name.toLowerCase().includes(lowerCaseQuery)
+        );
+        setFilteredProducts(filtered); // Update the filtered products
+      };
+  
+      
+
   return (
     <div className="category-page">
       <h2>{categoryName} Products</h2>
+                  {/* Include the SearchBar and pass handleSearch */}  
+                  <SearchBar onSearch={handleSearch} />
 
       {/* Sort Button */}
       <div className="sort-button-container">
