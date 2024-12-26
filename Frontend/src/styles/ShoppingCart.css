@@ -1,21 +1,31 @@
 /* Shopping Cart Container */
 .cart-container {
   max-width: 800px;
-  margin: 300px auto 0;
+  margin: 100px auto 0; /* Adjusted top margin for a better initial position */
   padding: 20px;
   background-color: #00b5b8;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   font-family: 'Arial', sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 150px); /* Ensures container fills the viewport minus header/footer space */
+  overflow-y: auto; /* Allows scrolling for increasing items */
+  position: relative;
 }
 
-/* Heading */
-.shopping-label {
+/* Fixed Header within Cart */
+.cart-header {
+  position: sticky;
+  top: 0;
+  background-color: #00b5b8;
+  z-index: 10;
+  padding: 10px 0;
   text-align: center;
   font-size: 24px;
   font-weight: bold;
   color: #333;
-  margin-bottom: 20px;
+  border-bottom: 2px solid #ddd;
 }
 
 /* Empty Cart Message */
@@ -27,11 +37,20 @@
   margin-top: 30px;
 }
 
+/* Cart Items Section */
+.cart-items {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  overflow-y: auto;
+  padding-bottom: 20px;
+}
+
 /* Cart Item */
 .cart-item {
   display: flex;
   align-items: center;
-  margin-bottom: 15px;
   padding: 15px;
   border: 1px solid #ddd;
   border-radius: 10px;
@@ -126,7 +145,7 @@
 }
 
 .confirmation-button:hover {
-  background-color: #28334A;
+  background-color: #374151;
 }
 
 /* Total Price Button */
@@ -144,5 +163,5 @@
 }
 
 .total-price-button:hover {
-  background-color: #28334A;
+  background-color: #374151;
 }

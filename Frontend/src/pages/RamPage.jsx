@@ -4,7 +4,7 @@ import axios from "axios";
 import ProductCard from "../components/ProductCard";
 import SearchBar from "../components/SearchBar"; // Import the SearchBar
 import { useNavigate } from 'react-router-dom';
-
+ 
 const RamPage = () => {
   const { categoryName } = useParams();
   const [products, setProducts] = useState([]);
@@ -92,10 +92,15 @@ const RamPage = () => {
         </button>
       </div>
       <div className="product-list">
-        {filteredProducts.map((product) => (
-          <ProductCard   itemType={"Ram"} key={product.id} product={product} handleCompareSelection={handleCompareSelection} />
-        ))}
-      </div>
+  {filteredProducts.map((product) => (
+    <ProductCard
+      key={product.id}
+      product={{ ...product, itemType: "Ram" }} // Include the itemType
+      handleCompareSelection={handleCompareSelection}
+    />
+  ))}
+</div>
+
       <button className="compare-button" onClick={compareProducts}>Compare Selected Products</button>
     </div>
   );

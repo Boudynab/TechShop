@@ -9,7 +9,7 @@ const ProductCard = ({ product, handleCompareSelection ,key}) => {
     setSelected(e.target.checked);
     handleCompareSelection(product, e.target.checked);
   };
-
+ 
   return (
     <div className="product-card">
       <img src={`data:image/jpeg;base64,${product.photo}`} alt="Decoded Photo" />
@@ -22,7 +22,7 @@ const ProductCard = ({ product, handleCompareSelection ,key}) => {
       <Link
         className="view-product"
         to={`/product/${product.id}`}
-        state={{ product }}
+        state={{ product, itemType: product.itemType }}
       >
         View Product
       </Link>
