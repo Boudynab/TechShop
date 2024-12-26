@@ -5,9 +5,9 @@ import styles from '../styles/Cart.module.css';
 // Product Card Component
 const Cart = ({ 
   id,
-  image = '/api/placeholder/200/200',
-  title = 'Product Title',
-  price = '0',
+  image,
+  title,
+  price,
   onQuantityChange,
   onDelete,
   initialQuantity = 1

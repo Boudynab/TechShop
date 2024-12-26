@@ -1,26 +1,51 @@
-import React, { useState,useEffect } from 'react';
-// import { useParams } from 'react-router-dom';
-// import pc from '../assets/images/pc.jfif';
+import React, { useState, useEffect } from 'react';
 import Cart from '../components/Cart';
 import '../styles/ShoppingCart.css';
+import axios from 'axios';
 
-const ShoppingCart = () => {
+const ShoppingCart = ({ user }) => {
   const [total, setTotal] = useState(0);
-  const [products, setProducts] = useState([
-    { id: 1, title: 'hamada', price: 3000, initialQuantity: 1 },
-    { id: 2, title: 'hamada', price: 30, initialQuantity: 1 },
-    { id: 3, title: 'hamada', price: 30, initialQuantity: 1 },
-    { id: 4, title: 'hamada', price: 30, initialQuantity: 1 },
-  ]);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
+  // Fetch products from the API
   useEffect(() => {
-    const initialTotal = products.reduce(
+    const fetchProducts = async () => {
+      try {
+        if (!user || !user.id) {
+          setError('User ID is not available');
+          setLoading(false);
+          return;
+        }
+        console.log(user.id); 
+        const response = await axios.get(`http://localhost:8080/TechShop/getCart/${user.id}`);
+        console.log(response.data); 
+        const productsWithQuantity = response.data.map((product) => ({
+          ...product,
+          initialQuantity: 1, 
+        }));
+        setProducts(productsWithQuantity);
+        setLoading(false);
+        const initialTotal = productsWithQuantity.reduce(
+          (sum, product) => sum + product.initialQuantity * parseFloat(product.price),
+          0
+        );
+        setTotal(initialTotal);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+    fetchProducts();
+  }, [user]); 
+  useEffect(() => {
+    const newTotal = products.reduce(
       (sum, product) => sum + product.initialQuantity * parseFloat(product.price),
       0
     );
-    setTotal(initialTotal);
-  }, []);
-
+    setTotal(newTotal);
+  }, [products]);
   const handleQuantityChange = (id, change) => {
     setProducts((prevProducts) =>
       prevProducts.map((product) =>
@@ -33,15 +58,12 @@ const ShoppingCart = () => {
       )
     );
   };
-
-  useEffect(() => {
-    const newTotal = products.reduce(
-      (sum, product) => sum + product.initialQuantity * parseFloat(product.price),
-      0
-    );
-    setTotal(newTotal);
-  }, [products]);
-
+  if (loading) {
+    return <div className="cart-container">Loading...</div>;
+  }
+  if (error) {
+    return <div className="cart-container">Error: {error}</div>;
+  }
   return (
     <div className="cart-container">
       <h2 className="shopping-label">Your Shopping Cart</h2>
@@ -51,21 +73,19 @@ const ShoppingCart = () => {
         products.map((product) => (
           <Cart
             key={product.id}
-            title={product.title}
+            name={product.name}
+            image={product.photo}
             price={product.price}
             initialQuantity={product.initialQuantity}
-            onQuantityChange={(change) =>
-              handleQuantityChange(product.id, change)
-            }
+            onQuantityChange={(change) => handleQuantityChange(product.id, change)}
           />
         ))
       )}
       <div className="Total-amount">
-        {total} LE
+        Total: {total} LE
         <button className="confirmation-button">Confirm</button>
       </div>
     </div>
   );
-}
-
+};
 export default ShoppingCart;

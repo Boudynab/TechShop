@@ -31,14 +31,6 @@ const MotherboardPage = () => {
     fetchProducts();
   }, []);  
 
-    // Search functionality
-    const handleSearch = (query) => {
-      const lowerCaseQuery = query.toLowerCase();
-      const filtered = products.filter((product) =>
-        product.name.toLowerCase().includes(lowerCaseQuery)
-      );
-      setFilteredProducts(filtered); // Update the filtered products
-    };
   
 
   // Handle product comparison selection
