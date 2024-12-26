@@ -31,6 +31,16 @@ const MotherboardPage = () => {
     fetchProducts();
   }, []);  
 
+    // Search functionality
+    const handleSearch = (query) => {
+      const lowerCaseQuery = query.toLowerCase();
+      const filtered = products.filter((product) =>
+        product.name.toLowerCase().includes(lowerCaseQuery)
+      );
+      setFilteredProducts(filtered); // Update the filtered products
+    };
+  
+
   // Handle product comparison selection
   const handleCompareSelection = (product, isSelected) => {
     if (isSelected) {
@@ -86,7 +96,8 @@ const MotherboardPage = () => {
   return (
     <div className="category-page">
       <h2>{categoryName || "Motherboards"}</h2>
-      <SearchBar onSearch={handleSearch} />
+            {/* Include the SearchBar and pass handleSearch */}  
+            <SearchBar onSearch={handleSearch} />
       {/* Sort Button */}
       <div className="sort-button-container">
         <button className="sort-button" onClick={handleSort}>

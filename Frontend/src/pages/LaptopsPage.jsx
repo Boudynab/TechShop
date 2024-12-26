@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import ProductCard from '../components/ProductCard';
+import SearchBar from "../components/SearchBar"; // Import the SearchBar
 
 const LaptopsPage = () => {
   const { categoryName } = useParams();
@@ -12,6 +13,7 @@ const LaptopsPage = () => {
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [sortState, setSortState] = useState(1); // 1: Ascending, 2: Descending
   const navigate = useNavigate();
+    const [filteredProducts, setFilteredProducts] = useState([]);  // meow search
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -51,6 +53,16 @@ const LaptopsPage = () => {
     }
   };
 
+      // Search functionality
+      const handleSearch = (query) => {
+        const lowerCaseQuery = query.toLowerCase();
+        const filtered = products.filter((product) =>
+          product.name.toLowerCase().includes(lowerCaseQuery)
+        );
+        setFilteredProducts(filtered); // Update the filtered products
+      };
+    
+
   const sortProducts = () => {
     let sortedProducts;
     if (sortState === 1) {
@@ -68,6 +80,10 @@ const LaptopsPage = () => {
   return (
     <div className="category-page">
       <h2>{categoryName} Laptops</h2>
+
+                  {/* Include the SearchBar and pass handleSearch */}  
+                  <SearchBar onSearch={handleSearch} />
+                  
       <button className="sort-button" onClick={sortProducts}>
         {sortState === 1 ? 'Sort by Price: Ascending' : 'Sort by Price: Descending'}
       </button>
