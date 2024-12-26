@@ -1,22 +1,24 @@
 import React from "react";
-import '../styles/profileModal.css'; // You can create your custom styles here
+import '../styles/profileModal.css'; // Your custom styles
 
-const ProfileModal = ({ onClose }) => {
-  const user = {
-    name: "Omar Khaled",
-    email: "omar2004khaled@gmail.com",
-  };
-
+const ProfileModal = ({ user, onClose }) => {
   return (
     <div className="profile-modal-overlay">
       <div className="profile-modal">
         <h2>User Profile</h2>
-        <p><strong>Name:</strong> {user.name}</p>
-        <p><strong>Email:</strong> {user.email}</p>
-        <button className="profile-modal-close" onClick={onClose}>Close</button>
+        {user ? (
+          <>
+            <p><strong>Name:</strong> {user.username}</p>
+            <p><strong>Email:</strong> {user.email}</p>
+          </>
+        ) : (
+          <p>No user information available.</p>
+        )}
+        <button onClick={onClose}>Close</button>
       </div>
     </div>
   );
 };
 
 export default ProfileModal;
+

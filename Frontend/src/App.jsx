@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
@@ -20,11 +20,12 @@ import ShoppingCart from './pages/ShoppingCart';
 import ComparePage from './pages/ComparePage';
 
 const App = () => {
+  const [user, setUser] = useState(null);
   return (
     <div>
       
       <Router>
-        <Navbar />
+        <Navbar user={user}/>
         <div className="main-content">
           <CategoryMenu />
           <Routes>
@@ -40,7 +41,7 @@ const App = () => {
             <Route path='/cart' element={<ShoppingCart />} />
             <Route path="/product/:productId" element={<ProductPage />} />
             <Route path="/compare" element={<ComparePage />} /> 
-            <Route path="/login" element={<Login />} />
+            <Route path="/login" element={<Login setUser={setUser} />} />
             <Route path="/register" element={<Register />} />
           </Routes>
         </div>

@@ -7,7 +7,7 @@ import '../styles/navbar.css';
 import logo1 from '../assets/images/logo1.jpg';
 import ProfileModal from "./ProfileModal"; // Import the ProfileModal component
 
-const Navbar = () => {
+const Navbar = ({user}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleProfileClick = () => {
@@ -41,10 +41,10 @@ const Navbar = () => {
       </div>
 
       {/* Profile Modal */}
-      {isModalOpen && <ProfileModal onClose={handleCloseModal} />}
+      {isModalOpen && <ProfileModal user={user} onClose={handleCloseModal} />}
 
       <div className="navbar-contact">
-        <a href="mailto:omar2004khaled@gmail.com" className="navbar-icon-link">
+        <a href={`mailto:${user?.email || "support@example.com"}`} className="navbar-icon-link">
           <FaEnvelope className="navbar-icon" />
         </a>
         <a href="tel:+01212121212" className="navbar-icon-link">

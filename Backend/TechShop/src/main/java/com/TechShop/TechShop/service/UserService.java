@@ -22,13 +22,11 @@ public class UserService {
     private final MotherBoredRepository motherBoredRepository;
     private final RamRepository ramRepository;
     private final ProcessorsRepository processorsRepository;
+    private final StoreageDriveRepository storeageDriveRepository;
     private final ShoppingCartRepository shoppingCartRepository;
 
-
-
-
     @Autowired
-    public UserService(UserRepository userRepository, CategoryRepository categoryRepository, DesktopRepository desktopRepository,MobileRepository mobileRepository,MotherBoredRepository motherBoredRepository,RamRepository ramRepository,ProcessorsRepository processorsRepository,ShoppingCartRepository shoppingCartRepository) {
+    public UserService(UserRepository userRepository, CategoryRepository categoryRepository, DesktopRepository desktopRepository,MobileRepository mobileRepository,MotherBoredRepository motherBoredRepository,RamRepository ramRepository,ProcessorsRepository processorsRepository,ShoppingCartRepository shoppingCartRepository,StoreageDriveRepository storeageDriveRepository) {
         this.userRepository = userRepository;
         this.categoryRepository = categoryRepository;
         this.desktopRepository = desktopRepository;
@@ -37,6 +35,7 @@ public class UserService {
         this.ramRepository=ramRepository;
         this.processorsRepository=processorsRepository;
         this.shoppingCartRepository=shoppingCartRepository;
+        this.storeageDriveRepository=storeageDriveRepository;
     }
     @Transactional
     public Object getUser(String email, String password) {
@@ -190,6 +189,26 @@ public class UserService {
             throw new RuntimeException("Error fetching Processors", e);
         }
     }
+    @Transactional
+    public Object addStoreageDrive(Long StoreageDriveId, StoreageDriveDTO storeageDriveDTO) {
+        if (storeageDriveRepository.findById(StoreageDriveId).isPresent()) {
+            return "StoreageDrive already exists";
+        }
+        StoreageDrive storeageDrive = new StoreageDrive(
+                storeageDriveDTO.getName(),
+                storeageDriveDTO.getPrice(),
+                storeageDriveDTO.getPhoto(),
+                storeageDriveDTO.getSpecifications()
+        );
+        return storeageDriveRepository.save(storeageDrive);
+    }
+    public List<StoreageDrive> getAllStoreageDrive() {
+        try {
+            return storeageDriveRepository.findAll();
+        } catch (Exception e) {
+            throw new RuntimeException("Error fetching StoreageDrives", e);
+        }
+    }
     public Object searchAllCategories(String criteria) {
         List<Category> allCategories = categoryRepository.findAll();
         return FilterFacadeCategory.filter(new FilterDTO(), allCategories, criteria);
@@ -214,6 +233,7 @@ public class UserService {
         List<MotherBoard> allMotherBoreds = motherBoredRepository.findAll();
         return FilterFacadeMotherboard.filter(new FilterDTO(), allMotherBoreds, criteria);
     }
+
     public List<ShoppingCart> getCartByUserId(Long userId) {
         return shoppingCartRepository.findByUserId(userId);
     }

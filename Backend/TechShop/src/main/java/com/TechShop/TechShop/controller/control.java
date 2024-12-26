@@ -8,6 +8,7 @@ import com.TechShop.TechShop.service.MobileDTO;
 import com.TechShop.TechShop.service.MotherBoredDTO;
 import com.TechShop.TechShop.service.ProcessorsDto;
 import com.TechShop.TechShop.service.RamDTO;
+import com.TechShop.TechShop.service.StoreageDriveDTO;
 import com.TechShop.TechShop.service.ShoppingCart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -191,6 +192,31 @@ public class control {
     public ResponseEntity<Object> getAllProcessors() {
         try {
             return ResponseEntity.ok(userService.getAllProcessors());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal Server Error");
+        }
+    }
+    @PostMapping("/addStorageDrive/{StoreageDriveId}")
+    public ResponseEntity<Object> addStorageDrive(
+            @PathVariable Long StoreageDriveId,
+            @RequestParam("name") String name,
+            @RequestParam("price") String price,
+            @RequestParam("photo") MultipartFile photo,
+            @RequestParam("specifications") List<String> specifications
+    ) {
+        try {
+            byte[] photoBytes = photo.getBytes();
+            StoreageDriveDTO storageDriveDTO = new StoreageDriveDTO(name, price, photoBytes, specifications);
+            return ResponseEntity.ok(userService.addStoreageDrive(StoreageDriveId, storageDriveDTO));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal Server Error");
+        }
+    }
+    @GetMapping("/getAllStorageDrive")
+    public ResponseEntity<Object> getAllStorageDrive() {
+        try {
+            return ResponseEntity.ok(userService.getAllStoreageDrive());
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal Server Error");
