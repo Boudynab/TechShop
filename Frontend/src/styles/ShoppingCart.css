@@ -1,36 +1,148 @@
-.shopping-label{
-  color: #222831;
-  margin-left: 20px;
-  font-size: 30px;
+/* Shopping Cart Container */
+.cart-container {
+  max-width: 800px;
+  margin: 300px auto 0;
+  padding: 20px;
+  background-color: #00b5b8;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
 }
 
-.cart-container{
-  position: absolute;
-  left: 250px;
-  top: 70px;
-  width: 100%;
-
+/* Heading */
+.shopping-label {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
 }
 
-.Total-amount{
+/* Empty Cart Message */
+.cart-container h4 {
+  text-align: center;
+  color: #ff6f61;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 30px;
+}
+
+/* Cart Item */
+.cart-item {
   display: flex;
-  margin-left: 390px;
   align-items: center;
-  justify-content: center;
-  background-color: #1f2937;
-  width: 220px;
-  height: 173px;
-  border-radius: 20px;
-  font-size: 38px;
+  margin-bottom: 15px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.cart-item:hover {
+  transform: scale(1.02);
+}
+
+/* Item Image */
+.cart-item-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  margin-right: 15px;
+  border-radius: 5px;
+}
+
+/* Item Details */
+.cart-item-details {
+  flex-grow: 1;
+  display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
-.confirmation-button{
-  width: 200px;
-  height: 40px;
-  border-radius: 15px;
-  font-size: 20px;
+.cart-item-details h3 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.cart-item-details p {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Quantity Controls */
+.quantity-controls {
   display: flex;
-  justify-content: center;
   align-items: center;
+  margin-top: 10px;
+}
+
+.quantity-controls button {
+  width: 35px;
+  height: 35px;
+  background-color: #1f2937;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s ease;
+}
+
+.quantity-controls button:hover {
+  background-color: #374151;
+}
+
+.quantity-controls span {
+  font-size: 16px;
+  margin: 0 10px;
+  font-weight: bold;
+}
+
+/* Total Amount Section */
+.Total-amount {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin-top: 20px;
+}
+
+/* Confirm Button */
+.confirmation-button {
+  width: 200px;
+  height: 45px; 
+  border-radius: 25px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #28334A;
+  border: none;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background-color 0.2s ease;
+}
+
+.confirmation-button:hover {
+  background-color: #28334A;
+}
+
+/* Total Price Button */
+.total-price-button {
+  margin-left: 15px;
+  padding: 12px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #28334A;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.total-price-button:hover {
+  background-color: #28334A;
 }

@@ -31,7 +31,7 @@
 }
 
 .imageContainer {
-  background-color: white;
+  background-color: rgb(189, 20, 20);
   padding: 0.5rem; /* Reduced from 0.75rem */
   border-radius: 0.5rem; /* Reduced from 0.75rem */
   width: 4rem; /* Reduced from 6rem */
@@ -86,7 +86,7 @@
 .productTitle {
   font-size: 0.875rem; /* Reduced from 0.9375rem */
   font-weight: 500;
-  color: var(--text-light, #f3f4f6);
+  color: var(--text-light, #0659ff);
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   line-height: 1.4;
@@ -101,6 +101,7 @@
   display: flex;
   align-items: center;
   gap: 1.5rem; /* Reduced from 2.5rem */
+  
 }
 
 .quantityButtons {
@@ -218,3 +219,4 @@
     min-width: auto;
   }
 }
+

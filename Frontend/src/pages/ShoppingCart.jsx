@@ -18,15 +18,15 @@ const ShoppingCart = ({ user }) => {
           setLoading(false);
           return;
         }
-        console.log(user.id); 
         const response = await axios.get(`http://localhost:8080/TechShop/getCart/${user.id}`);
-        console.log(response.data); 
         const productsWithQuantity = response.data.map((product) => ({
           ...product,
-          initialQuantity: 1, 
+          initialQuantity: 1, // Default quantity
         }));
         setProducts(productsWithQuantity);
         setLoading(false);
+
+        // Calculate the initial total
         const initialTotal = productsWithQuantity.reduce(
           (sum, product) => sum + product.initialQuantity * parseFloat(product.price),
           0
@@ -38,7 +38,9 @@ const ShoppingCart = ({ user }) => {
       }
     };
     fetchProducts();
-  }, [user]); 
+  }, [user]);
+
+  // Update total when products change
   useEffect(() => {
     const newTotal = products.reduce(
       (sum, product) => sum + product.initialQuantity * parseFloat(product.price),
@@ -46,29 +48,31 @@ const ShoppingCart = ({ user }) => {
     );
     setTotal(newTotal);
   }, [products]);
+
+  // Handle quantity changes
   const handleQuantityChange = (id, change) => {
     setProducts((prevProducts) =>
       prevProducts.map((product) =>
         product.id === id
-          ? {
-              ...product,
-              initialQuantity: Math.max(1, product.initialQuantity + change),
-            }
+          ? { ...product, initialQuantity: Math.max(1, product.initialQuantity + change) }
           : product
       )
     );
   };
+
   if (loading) {
     return <div className="cart-container">Loading...</div>;
   }
   if (error) {
     return <div className="cart-container">Error: {error}</div>;
   }
-  return (
+
+  return ( 
     <div className="cart-container">
       <h2 className="shopping-label">Your Shopping Cart</h2>
       {products.length === 0 ? (
-        <h4>Your cart is empty.</h4>
+        <h4 style={{ color: 'black' }}>Your cart is empty.</h4>
+
       ) : (
         products.map((product) => (
           <Cart
@@ -82,10 +86,12 @@ const ShoppingCart = ({ user }) => {
         ))
       )}
       <div className="Total-amount">
-        Total: {total} LE
+        
         <button className="confirmation-button">Confirm</button>
+        <button className="total-price-button">Total: {total} LE</button>
       </div>
     </div>
   );
 };
+
 export default ShoppingCart;
