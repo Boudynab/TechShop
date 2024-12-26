@@ -4,8 +4,9 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; 
 import ProductCard from '../components/ProductCard';
 import SearchBar from "../components/SearchBar"; // Import the SearchBar
+import { useLocation } from "react-router-dom";
 
-const DesktopsPage = () => {
+const DesktopsPage = (desktops) => {
   const { categoryName } = useParams(); 
   const [products, setProducts] = useState([]); 
   const [filteredProducts, setFilteredProducts] = useState([]); // Filtered products for sorting
@@ -30,6 +31,13 @@ const DesktopsPage = () => {
     };
     fetchProducts();
   }, []);  
+  console.log(desktops); // Log or use the itemtype as needed
+
+  const handleNavigateToProductPage = (product) => {
+    navigate('/product/' + product.id, {
+      state: { product, itemtype: 'Desktops' }  // Pass the itemtype here
+    });
+  };
 
   // Sorting function
   const handleSort = () => {
@@ -103,7 +111,7 @@ const DesktopsPage = () => {
 
       <div className="product-list">
         {filteredProducts.map((product) => (
-          <ProductCard key={product.id} product={product} handleCompareSelection={handleCompareSelection} />
+          <ProductCard key={product.id} product={product} itemtype={desktops} handleCompareSelection={handleCompareSelection} onClick={() => handleNavigateToProductPage(product)} />
         ))}
       </div>
       <button className="compare-button" onClick={compareProducts}>Compare Selected Products</button>

@@ -9,16 +9,16 @@ import moth from '../assets/images/moth.jpg';
 import sto from '../assets/images/sto.jpg';
 import phone from '../assets/images/phone.jpg';
 import { useNavigate } from "react-router-dom";
+
 const Home = () => {
   const navigate = useNavigate();
   const categories = [
-    { id: 5, name: "Laptops", image: lap, path: "/category/laptops" },
-    { id: 6, name: "Mobile Phones", image: phone, path: "/category/mobiles" },
-    { id: 1, name: "Processors", image: pro, path: "/category/processors" },
-    { id: 2, name: "Storage drives", image: sto, path: "/category/storage-drives" },
-    { id: 3, name: "Motherboards", image: moth, path: "/category/motherboards" },
-    { id: 4, name: "RAMs", image: ram, path: "/category/rams" },
-    
+    { id: 5, name: "Laptops", image: lap, path: "/category/laptops", itemtype: "Laptop" },
+    { id: 6, name: "Mobile Phones", image: phone, path: "/category/mobiles", itemtype: "Mobile Phone" },
+    { id: 1, name: "Processors", image: pro, path: "/category/processors", itemtype: "Processor" },
+    { id: 2, name: "Storage drives", image: sto, path: "/category/storage-drives", itemtype: "Storage" },
+    { id: 3, name: "Motherboards", image: moth, path: "/category/motherboards", itemtype: "Motherboard" },
+    { id: 4, name: "RAMs", image: ram, path: "/category/rams", itemtype: "RAM" },
   ];
 
   return (
@@ -27,7 +27,15 @@ const Home = () => {
       <h1 className="home-title">Categories</h1>
       <div className="category-grid">
         {categories.map((category) => (
-          <div key={category.id} className="category-card"  onClick={() => navigate(category.path)} >
+          <div
+            key={category.id}
+            className="category-card"
+            onClick={() => 
+              navigate(category.path, {
+                state: { itemtype: category.itemtype } // Pass itemtype as part of the state
+              })
+            }
+          >
             <img src={category.image} alt={category.name} className="category-icon" />
             <div className="category-name">{category.name}</div>
           </div>

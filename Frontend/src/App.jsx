@@ -21,6 +21,7 @@ import ComparePage from './pages/ComparePage';
 
 const App = () => {
   const [user, setUser] = useState(null);
+  const [desktops, setdesktops] = useState("Desktop");
   return (
     <div>
       
@@ -31,7 +32,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
 
-            <Route path="/category/desktops" element={<DesktopsPage />} />
+            <Route path="/category/desktops" element={<DesktopsPage desktops={desktops}/>} />
             <Route path="/category/mobiles" element={<MobilesPage />} />
             <Route path="/category/laptops" element={<LaptopsPage />} />
             <Route path="/category/rams" element={<RamPage />} />
@@ -39,7 +40,7 @@ const App = () => {
             <Route path="/category/storage-drives" element={<StoragePage />} />
             <Route path="/category/motherboards" element={<MotherboardPage />} />
             <Route path='/cart' element={<ShoppingCart user={user}/>} />
-            <Route path="/product/:productId" element={<ProductPage />} />
+            <Route path="/product/:productId" element={<ProductPage user={user}/>} />
             <Route path="/compare" element={<ComparePage />} /> 
             <Route path="/login" element={<Login setUser={setUser} />} />
             <Route path="/register" element={<Register />} />

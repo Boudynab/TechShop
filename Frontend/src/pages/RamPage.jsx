@@ -93,7 +93,7 @@ const RamPage = () => {
       </div>
       <div className="product-list">
         {filteredProducts.map((product) => (
-          <ProductCard key={product.id} product={product} handleCompareSelection={handleCompareSelection} />
+          <ProductCard   itemType={"Ram"} key={product.id} product={product} handleCompareSelection={handleCompareSelection} />
         ))}
       </div>
       <button className="compare-button" onClick={compareProducts}>Compare Selected Products</button>

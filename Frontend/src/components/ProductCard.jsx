@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/productCard.css';
 
-const ProductCard = ({ product, handleCompareSelection }) => {
+const ProductCard = ({ product, handleCompareSelection ,key}) => {
   const [selected, setSelected] = useState(false);
 
   const handleSelectionChange = (e) => {
