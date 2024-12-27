@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/Cart.module.css';
 
-const Cart = ({ name, image, price, initialQuantity, onQuantityChange }) => {
+const Cart = ({ name, image, price, initialQuantity, onQuantityChange,onRemove }) => {
   return (
     <div className="cart-item">
       <img src={`data:image/jpeg;base64,${image}`} alt={name} className="cart-item-image" />
@@ -13,6 +13,7 @@ const Cart = ({ name, image, price, initialQuantity, onQuantityChange }) => {
           <span style={{ color: 'black', fontWeight: 'bold' }}>{initialQuantity}</span>
           <button onClick={() => onQuantityChange(1)}>+</button>
         </div>
+        {/* <button className="remove-item-button" onClick={onRemove}>Remove</button> */}
       </div>
     </div>
   );

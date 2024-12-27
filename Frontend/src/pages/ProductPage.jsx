@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import '../styles/ProductPage.css';
 import axios from 'axios';
- 
+  
 const ProductPage = ({ user }) => {
   const { productId } = useParams();
   const location = useLocation();
@@ -23,7 +23,7 @@ const ProductPage = ({ user }) => {
         quantity: 1,
       });
       console.log('Product added to cart:', response.data);
-      console.log(itemType);
+      alert("Product added to cart successfully!");
     } catch (error) {
       console.error("Error adding to cart:", error);
     }

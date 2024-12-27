@@ -291,6 +291,12 @@ public class control {
         return ResponseEntity.ok(itemDetails);
     }
 
+    @GetMapping("/getcart/{userId}")
+    public ResponseEntity<Object> getCartitems(@PathVariable Long userId) {
+        List<ShoppingCart> itemDetails = userService.getCartByUserId(userId);
+        return ResponseEntity.ok(itemDetails);
+    }
+
     @PostMapping("/addcart")
     public ResponseEntity<ShoppingCart> addToCart(@RequestBody AddToCartRequest request) {
         ShoppingCart cartItem = userService.addItemToCart(
