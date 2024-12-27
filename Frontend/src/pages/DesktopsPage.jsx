@@ -111,7 +111,11 @@ const DesktopsPage = (desktops) => {
 
       <div className="product-list">
         {filteredProducts.map((product) => (
-          <ProductCard key={product.id} product={product} itemtype={desktops} handleCompareSelection={handleCompareSelection} onClick={() => handleNavigateToProductPage(product)} />
+          <ProductCard
+      key={product.id}
+      product={{ ...product, itemType: "Desktop" }} // Include the itemType
+      handleCompareSelection={handleCompareSelection}
+        />
         ))}
       </div>
       <button className="compare-button" onClick={compareProducts}>Compare Selected Products</button>

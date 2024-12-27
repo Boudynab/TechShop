@@ -99,11 +99,11 @@ const MotherboardPage = () => {
       
       <div className="product-list">
         {filteredProducts.map((product) => (
-          <ProductCard 
-            key={product.id} 
-            product={product} 
-            handleCompareSelection={handleCompareSelection} 
-          />
+          <ProductCard
+      key={product.id}
+      product={{ ...product, itemType: "MotherBoard" }} // Include the itemType
+      handleCompareSelection={handleCompareSelection}
+      />
         ))}
       </div>
 

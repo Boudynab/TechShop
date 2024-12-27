@@ -84,7 +84,11 @@ const ProcessorPage = () => {
       </button>
       <div className="product-list">
         {products.map((product) => (
-          <ProductCard key={product.id} product={product} handleCompareSelection={handleCompareSelection} />
+          <ProductCard
+          key={product.id}
+          product={{ ...product, itemType: "Processors" }} // Include the itemType
+          handleCompareSelection={handleCompareSelection}
+        />
         ))}
       </div>
       <button className="compare-button" onClick={compareProducts}>

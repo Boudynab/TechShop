@@ -23,6 +23,7 @@ const ProductPage = ({ user }) => {
         quantity: 1,
       });
       console.log('Product added to cart:', response.data);
+      console.log(itemType);
     } catch (error) {
       console.error("Error adding to cart:", error);
     }

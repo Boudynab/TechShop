@@ -97,10 +97,14 @@ const MobilesPage = () => {
       </div>
 
       <div className="product-list">
-        {filteredProducts.map((product) => (
-          <ProductCard key={product.id} product={product} handleCompareSelection={handleCompareSelection} />
-        ))}
-      </div>
+      {filteredProducts.map((product) => (
+        <ProductCard
+          key={product.id}
+          product={{ ...product, itemType: "Mobile" }} // Include the itemType
+          handleCompareSelection={handleCompareSelection}
+        />
+      ))}
+    </div>
       <button className="compare-button" onClick={compareProducts}>Compare Selected Products</button>
     </div>
   );

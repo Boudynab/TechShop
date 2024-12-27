@@ -40,6 +40,11 @@ public class StoreageDrive {
         this.photo=photo;
         this.specifications=specifications;
     }
+    public StoreageDrive(String name,String price,List<String>specifications){
+        this.name =name;
+        this.price=price;
+        this.specifications=specifications;
+    }
 
     public List<String> getSpecifications() {
         return specifications;

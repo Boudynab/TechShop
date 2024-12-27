@@ -268,6 +268,10 @@ public class UserService {
                             Ram ram = ramRepository.findById(itemId)
                                 .orElseThrow(() -> new RuntimeException("RAM item not found for ID: " + itemId));
                             return ram;
+                        case "storeagedrive":
+                            StoreageDrive storeageDrive = storeageDriveRepository.findById(itemId)
+                                .orElseThrow(() -> new RuntimeException("StoreageDrive item not found for ID: " + itemId));
+                            return storeageDrive;
                         default:
                             throw new RuntimeException("Unsupported item type: " + itemType);
                     }
