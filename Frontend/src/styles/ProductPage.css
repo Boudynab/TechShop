@@ -5,28 +5,28 @@
     position: absolute;
     left: 250px;
     top:70px;
-    height: 100%;
-    width: 84%;
-    background-color: #252a41;
+    width: 80%;
     color: #f5f5f5;
   }
   
+  
   .product-container {
-    position: absolute;
-    left: 50px;
-    top: 50px;
-    display: flex;
-    flex-direction: row;
+  
     background-color: #252a41;
     padding: 20px;
     border-radius: 8px;
-    width: 80%;
+    width: 100%;
+    margin: 50px 5px 50px 50px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
   }
+  
   
   .image-section {
     flex: 1;
     text-align: center;
+  }
+  .image-section img{
+    max-height:350px ;
   }
   
   .main-image {
@@ -83,7 +83,8 @@
   }
   
   .price {
-    font-size: 20px;
+    font-size: 30px;
+    font-weight: 700;
     margin: 15px 0;
   }
   
@@ -92,8 +93,10 @@
     color: #fff;
     border: none;
     padding: 10px 20px;
+    margin-top: 10px;
     font-size: 16px;
     cursor: pointer;
+    width: 99%;
     border-radius: 5px;
     transition: 0.3s;
   }

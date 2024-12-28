@@ -16,6 +16,8 @@
   margin-left: 1rem;
 }
 
+
+
 .productCard:hover {
   background-color: var(--background-darker, #111827);
   border-color: var(--border-color, #374151);

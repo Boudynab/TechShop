@@ -2,7 +2,7 @@
   position: absolute;
   left: 250px;
   top: 70px;
-  width: 100%;
+  width: 80%;
 }
 
 .category-page h2{
@@ -16,7 +16,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
-  width: 80%;
+  width: 100%;
 }
 
 .product-card {
@@ -25,7 +25,7 @@
   border-radius: 10px;
   padding: 15px;
   text-align: center;
-  width: 250px;
+  min-width: 100%;
   margin: 15px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
@@ -37,7 +37,7 @@
 }
 
 .product-card img {
-  width: 100%;
+  width: 80%;
   height: auto;
   border-radius: 5px;
   margin-bottom: 15px;
@@ -72,4 +72,5 @@
 .view-product{
   color: #00ADB5;
   font-weight: 700;
+  font-size: 20px;
 }

@@ -1,31 +1,29 @@
 /* Shopping Cart Container */
 .cart-container {
-  max-width: 800px;
-  margin: 100px auto 0; /* Adjusted top margin for a better initial position */
-  padding: 20px;
-  background-color: #00b5b8;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  font-family: 'Arial', sans-serif;
-  display: flex;
-  flex-direction: column;
-  height: calc(100vh - 150px); /* Ensures container fills the viewport minus header/footer space */
-  overflow-y: auto; /* Allows scrolling for increasing items */
+  position: fixed;
+  top: 80px;
+  left:250px;
+  background-color: #252a41;
+  padding: 10px 20px;
+  border-radius: 8px;
+  width: 75vw;
+  height: 75vh;
+  margin: 50px 5px 50px 50px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+
+
+.products-in-cart{
   position: relative;
+  overflow-y: auto;
+  max-height: 80%;
 }
 
 /* Fixed Header within Cart */
-.cart-header {
-  position: sticky;
-  top: 0;
-  background-color: #00b5b8;
-  z-index: 10;
-  padding: 10px 0;
+.shopping-label{
+  font-size: 30px;
   text-align: center;
-  font-size: 24px;
-  font-weight: bold;
-  color: #333;
-  border-bottom: 2px solid #ddd;
 }
 
 /* Empty Cart Message */
@@ -52,6 +50,7 @@
   display: flex;
   align-items: center;
   padding: 15px;
+  margin-bottom: 10px;
   border: 1px solid #ddd;
   border-radius: 10px;
   background-color: #ffffff;
@@ -122,6 +121,9 @@
 
 /* Total Amount Section */
 .Total-amount {
+  position: absolute;
+  bottom:10px;
+  left: 300px;
   text-align: center;
   font-size: 20px;
   font-weight: bold;
@@ -137,10 +139,11 @@
   font-size: 18px;
   font-weight: bold;
   color: #fff;
-  background-color: #28334A;
+  background-color: #00ADB5;
   border: none;
   cursor: pointer;
   margin-top: 15px;
+  margin-left: 10px;
   transition: background-color 0.2s ease;
 }
 

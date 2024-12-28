@@ -1,90 +1,114 @@
 
 .Chat-button{
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    width: 50px;
-    height: 50px;
-    background-color: #222831;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  width: 50px;
+  height: 50px;
+  background-color: #222831;
 }
 
 .chat-container {
-    position: fixed;
-    bottom: 10px;
-    right: 70px;
-    display: flex;
-    flex-direction: column;  /* To make messages appear from bottom to top */
-    justify-content: flex-start;    /* Align children from top to bottom */
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background-color: #222831;
-    font-family: Arial, sans-serif;
-  }
-
-  .messages{
-    
-    display: flex;
-  flex-direction: column; 
-  gap: 10px;
-  overflow-y: auto;
-  height: 300px;
+  position: fixed;
+  bottom: 10px;
+  right: 70px;
+  display: flex;
+  flex-direction: column;  /* To make messages appear from bottom to top */
+  justify-content: flex-start;    /* Align children from top to bottom */
   width: 100%;
-  }
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #222831;
+  font-family: Arial, sans-serif;
+}
+
+.messages{
   
+  display: flex;
+flex-direction: column; 
+gap: 10px;
+overflow-y: auto;
+height: 300px;
+width: 100%;
+}
+
+
+.message-bubble {
+  padding: 10px 15px;
+border-radius: 20px;
+margin: 5px 0;
+max-width: 70%;
+word-wrap: break-word;
+font-size: 14px;
+}
+
+
+.user-message {
   
-  .message-bubble {
-    padding: 10px 15px;
+  background-color: #00ADB5;
+  color: #EEEEEE;
+  align-self: flex-end;  
+  border-bottom-right-radius: 0;
+}
+
+
+.bot-message {
+  
+  background-color: #393E46;
+  color: #EEEEEE;
+  align-self: flex-start;  
+  border-bottom-left-radius: 0;
+}
+
+/* Style for the input field and button */
+.input-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.input-container input {
+  width: 80%;
+  padding: 10px;
   border-radius: 20px;
-  margin: 5px 0;
-  max-width: 70%;
-  word-wrap: break-word;
-  font-size: 14px;
-  }
+  border: 1px solid #ccc;
+}
+
+.input-container button {
+  width: 15%;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: #00ADB5;
+  color: white;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+.chat-bot{
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
   
- 
-  .user-message {
-    
-    background-color: #00ADB5;
-    color: #EEEEEE;
-    align-self: flex-end;  
-    border-bottom-right-radius: 0;
-  }
   
+}
+
+
+.fab{
   
-  .bot-message {
-    
-    background-color: #393E46;
-    color: #EEEEEE;
-    align-self: flex-start;  
-    border-bottom-left-radius: 0;
-  }
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
   
-  /* Style for the input field and button */
-  .input-container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-  }
-  
-  .input-container input {
-    width: 80%;
-    padding: 10px;
-    border-radius: 20px;
-    border: 1px solid #ccc;
-  }
-  
-  .input-container button {
-    width: 15%;
-    padding: 10px;
-    border-radius: 20px;
-    background-color: #00ADB5;
-    color: white;
-    border: none;
-    cursor: pointer;
-    text-align: center;
-  }
-  
+}
+
+.webchat{
+  width: 350px;
+  height: 400px;
+  position: fixed;
+  bottom: 10px;
+  right: 90px;
+}

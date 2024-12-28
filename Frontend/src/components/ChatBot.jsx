@@ -1,88 +1,44 @@
-import React, { useState } from "react";
-import "../styles/Chatbot.css";
-import { RiWechatFill } from "react-icons/ri";
+import { Webchat, WebchatProvider, Fab, getClient } from "@botpress/webchat";
+import { buildTheme } from "@botpress/webchat-generator";
+import { useState } from "react";
+import React from "react";
+import '../styles/Chatbot.css';
 
-const Chatbot = () => {
-  const [isChatOpen, setIsChatOpen] = useState(false);
-  const [messages, setMessages] = useState([
-    { sender: "bot", text: "Hi! I'm here to help. Ask me anything!" },
-  ]);
-  const [input, setInput] = useState("");
-  const [loading, setLoading] = useState(false);
+const { theme, style } = buildTheme({
+  themeName: "prism",
+  themeColor: "#00ADB5",
+});
 
-  const toggleChat = () => {
-    setIsChatOpen(!isChatOpen);
-  };
+//Add your Client ID here ⬇️
+const clientId = "4f4e9685-2414-45a3-984d-1b9b1f70be54";
 
-  const handleSend = () => {
-    if (!input.trim()) return;
+export default function ChatBot() {
+  const client = getClient({ clientId });
+  const [isWebchatOpen, setIsWebchatOpen] = useState(false);
 
-    const userMessage = { sender: "user", text: input };
-    setMessages((prev) => [...prev, userMessage]);
-    setInput(""); // Clear input field
-    setLoading(true); // Show typing indicator
-
-    // Simulated bot response
-    setTimeout(() => {
-      const botReply = generateBotReply(input);
-      setMessages((prev) => [...prev, { sender: "bot", text: botReply }]);
-      setLoading(false); // Hide typing indicator
-    }, 1000);
-  };
-
-  // Simple logic for bot responses
-  const generateBotReply = (userInput) => {
-    const lowerCaseInput = userInput.toLowerCase();
-    if (lowerCaseInput.includes("hello")) {
-      return "Hello! How can I assist you today?";
-    } else if (lowerCaseInput.includes("help")) {
-      return "Sure! Please specify what you need help with.";
-    } else if (lowerCaseInput.includes("bye")) {
-      return "Goodbye! Have a great day!";
-    } else {
-      return "I'm not sure I understand. Could you rephrase that?";
-    }
+  const toggleWebchat = () => {
+    setIsWebchatOpen((prevState) => !prevState);
   };
 
   return (
-    <>
-      <button className="Chat-button" onClick={toggleChat}>
-        <RiWechatFill />
-      </button>
-      {isChatOpen && (
-        <div className="chat-container">
-          <div className="messages">
-            {messages.map((msg, index) => (
-              <div
-                key={index}
-                className={`message-bubble ${
-                  msg.sender === "bot" ? "bot-message" : "user-message"
-                }`}
-              >
-                {msg.text}
-              </div>
-            ))}
-            {loading && (
-              <div style={{ textAlign: "left", margin: "10px 0" }}>
-                <strong>Bot:</strong> Typing...
-              </div>
-            )}
-          </div>
-          <div className="input-container">
-            <input
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder="Type a message"
-            />
-            <button onClick={handleSend} disabled={loading}>
-              Send
-            </button>
-          </div>
-        </div>
-      )}
-    </>
-  );
-};
+    <div className="chat-bot">
 
-export default Chatbot;
+      <style>{style}</style>
+      <WebchatProvider
+        theme={theme}
+        client={client}
+      >
+        <div className="fab"><Fab  onClick={toggleWebchat} /></div>
+        
+        <div
+          style={{
+            display: isWebchatOpen ? "block" : "none",
+          }}
+          className="webchat"
+        >
+          <Webchat />
+        </div>
+      </WebchatProvider>
+    </div>
+  );
+}
