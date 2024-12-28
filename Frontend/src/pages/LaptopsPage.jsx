@@ -13,7 +13,7 @@ const LaptopsPage = () => {
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [sortState, setSortState] = useState(1); // 1: Ascending, 2: Descending
   const navigate = useNavigate();
-    const [filteredProducts, setFilteredProducts] = useState([]);  // meow search
+  const [filteredProducts, setFilteredProducts] = useState([]); // Meow search
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -21,6 +21,7 @@ const LaptopsPage = () => {
         const response = await axios.get('http://localhost:8080/TechShop/getAllCategories');
         console.log(response.data);
         setProducts(response.data);
+        setFilteredProducts(response.data); // Initialize filteredProducts with all products
       } catch (err) {
         setError('Failed to fetch products');
       } finally {
@@ -53,47 +54,46 @@ const LaptopsPage = () => {
     }
   };
 
-      // Search functionality
-      const handleSearch = (query) => {
-        const lowerCaseQuery = query.toLowerCase();
-        const filtered = products.filter((product) =>
-          product.name.toLowerCase().includes(lowerCaseQuery)
-        );
-        setFilteredProducts(filtered); // Update the filtered products
-      };
-    
+  // Search functionality
+  const handleSearch = (query) => {
+    const lowerCaseQuery = query.toLowerCase();
+    const filtered = products.filter((product) =>
+      product.name.toLowerCase().includes(lowerCaseQuery)
+    );
+    setFilteredProducts(filtered); // Update the filtered products
+  };
 
   const sortProducts = () => {
     let sortedProducts;
     if (sortState === 1) {
       // Ascending order
-      sortedProducts = [...products].sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+      sortedProducts = [...filteredProducts].sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
       setSortState(2); // Switch to descending
     } else {
       // Descending order
-      sortedProducts = [...products].sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+      sortedProducts = [...filteredProducts].sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
       setSortState(1); // Switch to ascending
     }
-    setProducts(sortedProducts);
+    setFilteredProducts(sortedProducts); // Update only filteredProducts for rendering
   };
 
   return (
     <div className="category-page">
       <h2>{categoryName} Laptops</h2>
 
-                  {/* Include the SearchBar and pass handleSearch */}  
-                  <SearchBar onSearch={handleSearch} />
-                  
+      {/* Include the SearchBar and pass handleSearch */}
+      <SearchBar onSearch={handleSearch} />
+
       <button className="sort-button" onClick={sortProducts}>
         {sortState === 1 ? 'Sort by Price: Ascending' : 'Sort by Price: Descending'}
       </button>
       <div className="product-list">
-        {products.map((product) => (
+        {filteredProducts.map((product) => ( // Render filteredProducts instead of products
           <ProductCard
-      key={product.id}
-      product={{ ...product, itemType: "Category" }} // Include the itemType
-      handleCompareSelection={handleCompareSelection}
-         />
+            key={product.id}
+            product={{ ...product, itemType: "Category" }} // Include the itemType
+            handleCompareSelection={handleCompareSelection}
+          />
         ))}
       </div>
       <button className="compare-button" onClick={compareProducts}>

@@ -3,7 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import ProductCard from '../components/ProductCard';
-import SearchBar from "../components/SearchBar"; 
+import SearchBar from "../components/SearchBar";
+
 const StoragePage = () => {
   const { categoryName } = useParams();
   const [products, setProducts] = useState([]);
@@ -20,6 +21,7 @@ const StoragePage = () => {
         const response = await axios.get('http://localhost:8080/TechShop/getAllStorageDrive');
         console.log(response.data);
         setProducts(response.data);
+        setFilteredProducts(response.data); // Initialize filteredProducts with all products
       } catch (err) {
         setError('Failed to fetch products');
       } finally {
@@ -56,23 +58,24 @@ const StoragePage = () => {
     let sortedProducts;
     if (sortState === 1) {
       // Ascending order
-      sortedProducts = [...products].sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+      sortedProducts = [...filteredProducts].sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
       setSortState(2); // Switch to descending
     } else {
       // Descending order
-      sortedProducts = [...products].sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+      sortedProducts = [...filteredProducts].sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
       setSortState(1); // Switch to ascending
     }
-    setProducts(sortedProducts);
+    setFilteredProducts(sortedProducts); // Update filtered products for display
   };
-        // Search functionality
-        const handleSearch = (query) => {
-          const lowerCaseQuery = query.toLowerCase();
-          const filtered = products.filter((product) =>
-            product.name.toLowerCase().includes(lowerCaseQuery)
-          );
-          setFilteredProducts(filtered); // Update the filtered products
-        };
+
+  // Search functionality
+  const handleSearch = (query) => {
+    const lowerCaseQuery = query.toLowerCase();
+    const filtered = products.filter((product) =>
+      product.name.toLowerCase().includes(lowerCaseQuery)
+    );
+    setFilteredProducts(filtered); // Update the filtered products
+  };
 
   return (
     <div className="category-page">
@@ -82,12 +85,12 @@ const StoragePage = () => {
         {sortState === 1 ? 'Sort by Price: Ascending' : 'Sort by Price: Descending'}
       </button>
       <div className="product-list">
-        {products.map((product) => (
+        {filteredProducts.map((product) => ( // Use filteredProducts for rendering
           <ProductCard
-          key={product.id}
-          product={{ ...product, itemType: "StoreageDrive" }} // Include the itemType
-          handleCompareSelection={handleCompareSelection}
-        />
+            key={product.id}
+            product={{ ...product, itemType: "StoreageDrive" }} // Include the itemType
+            handleCompareSelection={handleCompareSelection}
+          />
         ))}
       </div>
       <button className="compare-button" onClick={compareProducts}>

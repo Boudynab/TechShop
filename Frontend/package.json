@@ -11,6 +11,8 @@
     "start": "react-scripts start"
   },
   "dependencies": {
+    "@botpress/webchat": "^2.3.8",
+    "@botpress/webchat-generator": "^0.2.15",
     "axios": "^1.7.9",
     "frontend": "file:",
     "lucide-react": "^0.469.0",
