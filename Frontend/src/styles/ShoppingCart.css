@@ -1,6 +1,7 @@
 /* Shopping Cart Container */
 .cart-container {
-  position: fixed;
+  
+  overflow-y: scroll;
   top: 80px;
   left:250px;
   background-color: #252a41;
